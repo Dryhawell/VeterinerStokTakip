@@ -1,0 +1,101 @@
+from pydantic import BaseModel
+from typing import Optional, List
+from datetime import date, datetime
+
+class KategoriBase(BaseModel):
+    ad: str
+    aciklama: Optional[str] = None
+
+class KategoriCreate(KategoriBase):
+    pass
+
+class Kategori(KategoriBase):
+    id: int
+    
+    class Config:
+        orm_mode = True
+
+class UrunBase(BaseModel):
+    ad: str
+    kategori_id: int
+    stok_miktari: int
+    minimum_stok: int
+    birim_fiyat: float
+    son_kullanma_tarihi: Optional[date] = None
+
+class UrunCreate(UrunBase):
+    pass
+
+class Urun(UrunBase):
+    id: int
+    
+    class Config:
+        orm_mode = True
+
+class MusteriBase(BaseModel):
+    ad: str
+    soyad: str
+    telefon: str
+
+class MusteriCreate(MusteriBase):
+    pass
+
+class Musteri(MusteriBase):
+    id: int
+    borc: float
+    
+    class Config:
+        orm_mode = True
+
+class StokHareketiBase(BaseModel):
+    urun_id: int
+    miktar: int
+    hareket_tipi: str
+
+class StokHareketiCreate(StokHareketiBase):
+    pass
+
+class StokHareketi(StokHareketiBase):
+    id: int
+    tarih: datetime
+    
+    class Config:
+        orm_mode = True
+
+class SatisDetayBase(BaseModel):
+    urun_id: int
+    miktar: int
+    birim_fiyat: float
+
+class SatisDetayCreate(SatisDetayBase):
+    pass
+
+class SatisDetay(SatisDetayBase):
+    id: int
+    satis_id: int
+    
+    class Config:
+        orm_mode = True
+
+class SatisBase(BaseModel):
+    musteri_id: int
+    satis_detaylari: List[SatisDetayCreate]
+
+class SatisCreate(SatisBase):
+    pass
+
+class Satis(SatisBase):
+    id: int
+    tarih: datetime
+    toplam_tutar: float
+    odenen_tutar: float
+    
+    class Config:
+        orm_mode = True
+
+class Satis(SatisBase):
+    id: int
+    tarih: datetime
+    
+    class Config:
+        orm_mode = True
