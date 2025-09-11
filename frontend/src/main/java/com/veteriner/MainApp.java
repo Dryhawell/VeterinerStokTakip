@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class MainApp extends Application {
@@ -39,7 +40,7 @@ public class MainApp extends Application {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainApp.class.getResource("/fxml/MainPage.fxml"));
-            BorderPane mainPage = (BorderPane) loader.load();
+            AnchorPane mainPage = (AnchorPane) loader.load();
             rootLayout.setCenter(mainPage);
         } catch (Exception e) {
             e.printStackTrace();

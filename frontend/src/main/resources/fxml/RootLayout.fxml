@@ -4,41 +4,44 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuItem?>
 
-<BorderPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:id="rootLayout" prefHeight="600.0" prefWidth="800.0" 
+            xmlns="http://javafx.com/javafx/17" 
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.veteriner.controller.RootLayoutController">
    <top>
       <MenuBar BorderPane.alignment="CENTER">
         <menus>
           <Menu mnemonicParsing="false" text="Ürünler">
             <items>
-              <MenuItem mnemonicParsing="false" text="Ürün Listesi" />
-              <MenuItem mnemonicParsing="false" text="Yeni Ürün" />
-              <MenuItem mnemonicParsing="false" text="Kategoriler" />
+              <MenuItem fx:id="urunListesiMenuItem" mnemonicParsing="false" text="Ürün Listesi" />
+              <MenuItem fx:id="yeniUrunMenuItem" mnemonicParsing="false" text="Yeni Ürün" />
+              <MenuItem fx:id="kategorilerMenuItem" mnemonicParsing="false" text="Kategoriler" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Stok">
             <items>
-              <MenuItem mnemonicParsing="false" text="Stok Giriş" />
-              <MenuItem mnemonicParsing="false" text="Stok Çıkış" />
-              <MenuItem mnemonicParsing="false" text="Stok Hareketleri" />
+              <MenuItem fx:id="stokGirisMenuItem" mnemonicParsing="false" text="Stok Giriş" />
+              <MenuItem fx:id="stokCikisMenuItem" mnemonicParsing="false" text="Stok Çıkış" />
+              <MenuItem fx:id="stokHareketleriMenuItem" mnemonicParsing="false" text="Stok Hareketleri" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Müşteriler">
             <items>
-              <MenuItem mnemonicParsing="false" text="Müşteri Listesi" />
-              <MenuItem mnemonicParsing="false" text="Yeni Müşteri" />
+              <MenuItem fx:id="musteriListesiMenuItem" mnemonicParsing="false" text="Müşteri Listesi" />
+              <MenuItem fx:id="yeniMusteriMenuItem" mnemonicParsing="false" text="Yeni Müşteri" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Satış">
             <items>
-              <MenuItem mnemonicParsing="false" text="Yeni Satış" />
-              <MenuItem mnemonicParsing="false" text="Satış Geçmişi" />
+              <MenuItem fx:id="yeniSatisMenuItem" mnemonicParsing="false" text="Yeni Satış" />
+              <MenuItem fx:id="satisGecmisiMenuItem" mnemonicParsing="false" text="Satış Geçmişi" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Raporlar">
             <items>
-              <MenuItem mnemonicParsing="false" text="Stok Raporu" />
-              <MenuItem mnemonicParsing="false" text="Satış Raporu" />
-              <MenuItem mnemonicParsing="false" text="Borç Raporu" />
+              <MenuItem fx:id="stokRaporuMenuItem" mnemonicParsing="false" text="Stok Raporu" />
+              <MenuItem fx:id="satisRaporuMenuItem" mnemonicParsing="false" text="Satış Raporu" />
+              <MenuItem fx:id="borcRaporuMenuItem" mnemonicParsing="false" text="Borç Raporu" />
             </items>
           </Menu>
         </menus>
