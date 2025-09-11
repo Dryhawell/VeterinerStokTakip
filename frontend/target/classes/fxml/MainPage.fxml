@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <VBox spacing="20.0" alignment="CENTER">
+         <padding>
+            <Insets top="20" right="20" bottom="20" left="20"/>
+         </padding>
+         <children>
+            <Label text="Veteriner Stok Takip Sistemi" style="-fx-font-size: 24px;"/>
+            
+            <GridPane hgap="20" vgap="20">
+               <!-- Kritik Stok Uyarıları -->
+               <VBox GridPane.columnIndex="0" GridPane.rowIndex="0" 
+                     style="-fx-background-color: #ffebee; -fx-padding: 10; -fx-background-radius: 5;">
+                  <Label text="Kritik Stok Uyarıları" style="-fx-font-weight: bold;"/>
+                  <Label fx:id="kritikStokLabel" text="0 ürün kritik seviyede"/>
+               </VBox>
+
+               <!-- SKT Uyarıları -->
+               <VBox GridPane.columnIndex="1" GridPane.rowIndex="0"
+                     style="-fx-background-color: #fff3e0; -fx-padding: 10; -fx-background-radius: 5;">
+                  <Label text="Son Kullanma Tarihi Yaklaşanlar" style="-fx-font-weight: bold;"/>
+                  <Label fx:id="sktLabel" text="0 ürünün SKT'si yaklaşıyor"/>
+               </VBox>
+
+               <!-- Toplam Ürün -->
+               <VBox GridPane.columnIndex="0" GridPane.rowIndex="1"
+                     style="-fx-background-color: #e3f2fd; -fx-padding: 10; -fx-background-radius: 5;">
+                  <Label text="Toplam Ürün" style="-fx-font-weight: bold;"/>
+                  <Label fx:id="toplamUrunLabel" text="0 çeşit ürün"/>
+               </VBox>
+
+               <!-- Toplam Borç -->
+               <VBox GridPane.columnIndex="1" GridPane.rowIndex="1"
+                     style="-fx-background-color: #e8f5e9; -fx-padding: 10; -fx-background-radius: 5;">
+                  <Label text="Toplam Borç" style="-fx-font-weight: bold;"/>
+                  <Label fx:id="toplamBorcLabel" text="0.00 TL"/>
+               </VBox>
+            </GridPane>
+         </children>
+      </VBox>
+   </center>
+</BorderPane>

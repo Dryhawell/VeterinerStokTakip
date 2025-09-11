@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuItem?>
+
+<BorderPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <MenuBar BorderPane.alignment="CENTER">
+        <menus>
+          <Menu mnemonicParsing="false" text="Ürünler">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Ürün Listesi" />
+              <MenuItem mnemonicParsing="false" text="Yeni Ürün" />
+              <MenuItem mnemonicParsing="false" text="Kategoriler" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Stok">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Stok Giriş" />
+              <MenuItem mnemonicParsing="false" text="Stok Çıkış" />
+              <MenuItem mnemonicParsing="false" text="Stok Hareketleri" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Müşteriler">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Müşteri Listesi" />
+              <MenuItem mnemonicParsing="false" text="Yeni Müşteri" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Satış">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Yeni Satış" />
+              <MenuItem mnemonicParsing="false" text="Satış Geçmişi" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Raporlar">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Stok Raporu" />
+              <MenuItem mnemonicParsing="false" text="Satış Raporu" />
+              <MenuItem mnemonicParsing="false" text="Borç Raporu" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </top>
+</BorderPane>
