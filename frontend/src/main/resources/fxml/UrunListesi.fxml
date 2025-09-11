@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import java.net.URL?>
+
+<VBox xmlns="http://javafx.com/javafx/22"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.veteriner.controller.UrunController"
+      spacing="20.0">
+    
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+    
+    <!-- Başlık ve Toolbar -->
+    <HBox spacing="20.0" alignment="CENTER_LEFT">
+        <Label text="Ürün Listesi" styleClass="page-title"/>
+        <Region HBox.hgrow="ALWAYS" />
+        <TextField fx:id="aramaField" promptText="Ürün Ara..." prefWidth="200.0"/>
+        <Button text="Yeni Ürün" onAction="#handleYeniUrun" styleClass="primary-button"/>
+    </HBox>
+    
+    <!-- Ürün Tablosu -->
+    <TableView fx:id="urunTable" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="idColumn" text="ID" prefWidth="75.0"/>
+            <TableColumn fx:id="adColumn" text="Ürün Adı" prefWidth="200.0"/>
+            <TableColumn fx:id="kategoriColumn" text="Kategori" prefWidth="150.0"/>
+            <TableColumn fx:id="stokMiktariColumn" text="Stok" prefWidth="100.0"/>
+            <TableColumn fx:id="minimumStokColumn" text="Min. Stok" prefWidth="100.0"/>
+            <TableColumn fx:id="birimFiyatColumn" text="Birim Fiyat" prefWidth="120.0"/>
+            <TableColumn fx:id="sonKullanmaTarihiColumn" text="SKT" prefWidth="120.0"/>
+            <TableColumn fx:id="islemlerColumn" text="İşlemler" prefWidth="200.0"/>
+        </columns>
+        <placeholder>
+            <Label text="Henüz ürün eklenmemiş"/>
+        </placeholder>
+    </TableView>
+    
+    <stylesheets>
+        <URL value="@/styles/styles.css"/>
+    </stylesheets>
+</VBox>

@@ -111,10 +111,14 @@ public class ApiService {
     public CompletableFuture<List<Urun>> getUrunler() {
         return CompletableFuture.supplyAsync(() -> {
             try {
-                return api.getUrunler().execute().body();
+                var response = api.getUrunler().execute();
+                if (response.isSuccessful() && response.body() != null) {
+                    return response.body();
+                } else {
+                    throw new RuntimeException("Ürünler alınamadı: " + response.message());
+                }
             } catch (Exception e) {
-                e.printStackTrace();
-                return List.of();
+                throw new RuntimeException("Ürünler alınamadı", e);
             }
         });
     }
@@ -122,10 +126,14 @@ public class ApiService {
     public CompletableFuture<Urun> createUrun(Urun urun) {
         return CompletableFuture.supplyAsync(() -> {
             try {
-                return api.createUrun(urun).execute().body();
+                var response = api.createUrun(urun).execute();
+                if (response.isSuccessful() && response.body() != null) {
+                    return response.body();
+                } else {
+                    throw new RuntimeException("Ürün eklenemedi: " + response.message());
+                }
             } catch (Exception e) {
-                e.printStackTrace();
-                return null;
+                throw new RuntimeException("Ürün eklenemedi", e);
             }
         });
     }
@@ -133,22 +141,29 @@ public class ApiService {
     public CompletableFuture<Urun> updateUrun(Integer id, Urun urun) {
         return CompletableFuture.supplyAsync(() -> {
             try {
-                return api.updateUrun(id, urun).execute().body();
+                var response = api.updateUrun(id, urun).execute();
+                if (response.isSuccessful() && response.body() != null) {
+                    return response.body();
+                } else {
+                    throw new RuntimeException("Ürün güncellenemedi: " + response.message());
+                }
             } catch (Exception e) {
-                e.printStackTrace();
-                return null;
+                throw new RuntimeException("Ürün güncellenemedi", e);
             }
         });
     }
 
-    public CompletableFuture<Boolean> deleteUrun(Integer id) {
+    public CompletableFuture<Void> deleteUrun(Integer id) {
         return CompletableFuture.supplyAsync(() -> {
             try {
-                api.deleteUrun(id).execute();
-                return true;
+                var response = api.deleteUrun(id).execute();
+                if (response.isSuccessful()) {
+                    return null;
+                } else {
+                    throw new RuntimeException("Ürün silinemedi: " + response.message());
+                }
             } catch (Exception e) {
-                e.printStackTrace();
-                return false;
+                throw new RuntimeException("Ürün silinemedi", e);
             }
         });
     }
