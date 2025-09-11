@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import java.net.URL?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/22"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.veteriner.controller.KategoriController"
+            prefHeight="600.0" prefWidth="800.0">
+            
+    <VBox spacing="20.0" AnchorPane.topAnchor="20.0" AnchorPane.leftAnchor="20.0" 
+          AnchorPane.rightAnchor="20.0" AnchorPane.bottomAnchor="20.0">
+          
+        <!-- Başlık ve Butonlar -->
+        <HBox spacing="20.0" alignment="CENTER_LEFT">
+            <Label text="Kategoriler" styleClass="page-title"/>
+            <Region HBox.hgrow="ALWAYS" />
+            <Button fx:id="yeniKategoriButton" text="Yeni Kategori" onAction="#handleYeniKategori" styleClass="primary-button"/>
+        </HBox>
+        
+        <!-- Kategori Tablosu -->
+        <TableView fx:id="kategoriTable" VBox.vgrow="ALWAYS">
+            <columns>
+                <TableColumn fx:id="idColumn" text="ID" prefWidth="100.0"/>
+                <TableColumn fx:id="adColumn" text="Kategori Adı" prefWidth="400.0"/>
+                <TableColumn fx:id="islemlerColumn" text="İşlemler" prefWidth="200.0"/>
+            </columns>
+            <placeholder>
+                <Label text="Henüz kategori eklenmemiş"/>
+            </placeholder>
+        </TableView>
+    </VBox>
+    
+    <!-- Stil dosyası -->
+    <stylesheets>
+        <URL value="@/styles/styles.css"/>
+    </stylesheets>
+</AnchorPane>

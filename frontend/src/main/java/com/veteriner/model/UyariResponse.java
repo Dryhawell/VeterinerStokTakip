@@ -7,6 +7,7 @@ public class UyariResponse {
     private List<Urun> kritikStokUrunler;
     private List<Urun> sktYaklasanUrunler;
     private List<Musteri> borcluMusteriler;
+    private List<KategoriOzet> kategoriler;
     private int toplamUrunCesidi;
     private double toplamBorc;
 
@@ -50,5 +51,11 @@ public class UyariResponse {
         this.toplamBorc = toplamBorc;
     }
 
+    public List<KategoriOzet> getKategoriler() {
+        return kategoriler;
+    }
 
+    public void setKategoriler(List<KategoriOzet> kategoriler) {
+        this.kategoriler = kategoriler;
+    }
 }

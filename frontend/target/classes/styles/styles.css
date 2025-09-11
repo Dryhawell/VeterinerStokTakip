@@ -1,0 +1,83 @@
+.info-card {
+    -fx-background-color: white;
+    background-color: white;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 3);
+    -fx-background-radius: 5;
+    border-radius: 5px;
+}
+
+.table-view {
+    -fx-background-color: transparent;
+    background-color: transparent;
+}
+
+.table-view .column-header {
+    -fx-background-color: #f5f5f5;
+    background-color: #f5f5f5;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: #757575;
+    color: #757575;
+    -fx-font-weight: bold;
+    font-weight: bold;
+}
+
+.table-row-cell {
+    -fx-background-color: white;
+    background-color: white;
+    -fx-border-color: transparent transparent #f0f0f0 transparent;
+    border-color: transparent transparent #f0f0f0 transparent;
+}
+
+.table-row-cell:odd {
+    -fx-background-color: #fafafa;
+    background-color: #fafafa;
+}
+
+.table-row-cell:hover {
+    -fx-background-color: #f5f5f5;
+    background-color: #f5f5f5;
+}
+
+.button {
+    -fx-background-color: #2196f3;
+    background-color: #2196f3;
+    -fx-text-fill: white;
+    color: white;
+    -fx-padding: 8 15;
+    padding: 8px 15px;
+    -fx-background-radius: 3;
+    border-radius: 3px;
+}
+
+.button:hover {
+    -fx-background-color: #1976d2;
+    background-color: #1976d2;
+}
+
+.button:pressed {
+    -fx-background-color: #1565c0;
+    background-color: #1565c0;
+}
+
+/* Özel renkler */
+.kritik-stok {
+    -fx-text-fill: #f44336;
+    color: #f44336;
+}
+
+.skt-uyari {
+    -fx-text-fill: #ff9800;
+    color: #ff9800;
+}
+
+.borc-pozitif {
+    -fx-text-fill: #4caf50;
+    color: #4caf50;
+}
+
+.borc-negatif {
+    -fx-text-fill: #f44336;
+    color: #f44336;
+}

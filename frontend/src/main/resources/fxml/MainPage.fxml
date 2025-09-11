@@ -55,12 +55,30 @@
                 </padding>
                 <HBox spacing="20.0">
                     <Label fx:id="toplamUrunLabel" style="-fx-font-size: 18px;" text="0 çeşit ürün"/>
+                    <Region HBox.hgrow="ALWAYS" />
                     <Label fx:id="toplamBorcLabel" style="-fx-font-size: 18px;" text="0.00 TL toplam borç"/>
                 </HBox>
                 <TableView fx:id="borcluMusterilerTable" VBox.vgrow="ALWAYS">
                     <columns>
                         <TableColumn fx:id="borcluMusteriAdiColumn" text="Müşteri Adı" prefWidth="200.0"/>
                         <TableColumn fx:id="borcMiktariColumn" text="Borç Miktarı" prefWidth="150.0"/>
+                    </columns>
+                </TableView>
+            </VBox>
+            
+            <VBox styleClass="info-card" spacing="10.0" HBox.hgrow="ALWAYS">
+                <padding>
+                    <Insets top="10" right="10" bottom="10" left="10"/>
+                </padding>
+                <HBox spacing="20.0" alignment="CENTER_LEFT">
+                    <Label fx:id="kategorilerLabel" style="-fx-font-size: 18px;" text="Kategoriler"/>
+                    <Region HBox.hgrow="ALWAYS" />
+                    <Button text="Kategori Yönetimi" onAction="#handleKategoriYonetimi"/>
+                </HBox>
+                <TableView fx:id="kategoriTable" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="kategoriAdiColumn" text="Kategori Adı" prefWidth="200.0"/>
+                        <TableColumn fx:id="urunSayisiColumn" text="Ürün Sayısı" prefWidth="100.0"/>
                     </columns>
                 </TableView>
             </VBox>

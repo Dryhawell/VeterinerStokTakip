@@ -1,8 +1,11 @@
 package com.veteriner.service;
 
 import com.veteriner.model.*;
+import retrofit2.Call;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
@@ -43,10 +46,15 @@ public class ApiService {
     public CompletableFuture<List<Kategori>> getKategoriler() {
         return CompletableFuture.supplyAsync(() -> {
             try {
-                return api.getKategoriler().execute().body();
+                var response = api.getKategoriler().execute();
+                if (response.isSuccessful()) {
+                    return response.body();
+                } else {
+                    String errorMessage = response.errorBody() != null ? response.errorBody().toString() : "Bilinmeyen hata";
+                    throw new RuntimeException("Kategoriler alınamadı: " + errorMessage);
+                }
             } catch (Exception e) {
-                e.printStackTrace();
-                return List.of();
+                throw new RuntimeException("Kategoriler alınamadı", e);
             }
         });
     }
@@ -54,10 +62,15 @@ public class ApiService {
     public CompletableFuture<Kategori> createKategori(Kategori kategori) {
         return CompletableFuture.supplyAsync(() -> {
             try {
-                return api.createKategori(kategori).execute().body();
+                var response = api.createKategori(kategori).execute();
+                if (response.isSuccessful()) {
+                    return response.body();
+                } else {
+                    String errorMessage = response.errorBody() != null ? response.errorBody().toString() : "Bilinmeyen hata";
+                    throw new RuntimeException("Kategori eklenemedi: " + errorMessage);
+                }
             } catch (Exception e) {
-                e.printStackTrace();
-                return null;
+                throw new RuntimeException("Kategori eklenemedi", e);
             }
         });
     }
@@ -65,22 +78,31 @@ public class ApiService {
     public CompletableFuture<Kategori> updateKategori(Integer id, Kategori kategori) {
         return CompletableFuture.supplyAsync(() -> {
             try {
-                return api.updateKategori(id, kategori).execute().body();
+                var response = api.updateKategori(id, kategori).execute();
+                if (response.isSuccessful()) {
+                    return response.body();
+                } else {
+                    String errorMessage = response.errorBody() != null ? response.errorBody().toString() : "Bilinmeyen hata";
+                    throw new RuntimeException("Kategori güncellenemedi: " + errorMessage);
+                }
             } catch (Exception e) {
-                e.printStackTrace();
-                return null;
+                throw new RuntimeException("Kategori güncellenemedi", e);
             }
         });
     }
 
-    public CompletableFuture<Boolean> deleteKategori(Integer id) {
+    public CompletableFuture<Void> deleteKategori(Integer id) {
         return CompletableFuture.supplyAsync(() -> {
             try {
-                api.deleteKategori(id).execute();
-                return true;
+                var response = api.deleteKategori(id).execute();
+                if (response.isSuccessful()) {
+                    return null;
+                } else {
+                    String errorMessage = response.errorBody() != null ? response.errorBody().toString() : "Bilinmeyen hata";
+                    throw new RuntimeException("Kategori silinemedi: " + errorMessage);
+                }
             } catch (Exception e) {
-                e.printStackTrace();
-                return false;
+                throw new RuntimeException("Kategori silinemedi", e);
             }
         });
     }

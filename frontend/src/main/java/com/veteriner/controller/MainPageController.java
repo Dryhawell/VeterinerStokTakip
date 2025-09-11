@@ -57,10 +57,24 @@ public class MainPageController {
     
     @FXML
     private TableColumn<Musteri, Double> borcMiktariColumn;
+    
+    // Kategori tablosu ve kolonları
+    @FXML
+    private Label kategorilerLabel;
+    
+    @FXML
+    private TableView<KategoriOzet> kategoriTable;
+    
+    @FXML
+    private TableColumn<KategoriOzet, String> kategoriAdiColumn;
+    
+    @FXML
+    private TableColumn<KategoriOzet, Integer> urunSayisiColumn;
 
     private ObservableList<Urun> kritikStokUrunler = FXCollections.observableArrayList();
     private ObservableList<Urun> sktUrunler = FXCollections.observableArrayList();
     private ObservableList<Musteri> borcluMusteriler = FXCollections.observableArrayList();
+    private ObservableList<KategoriOzet> kategoriler = FXCollections.observableArrayList();
 
     @FXML
     private void initialize() {
@@ -84,6 +98,13 @@ public class MainPageController {
         sktTarihiColumn.setCellValueFactory(cellData -> 
             new javafx.beans.property.SimpleObjectProperty<>(cellData.getValue().getSonKullanmaTarihi()));
         sktTable.setItems(sktUrunler);
+        
+        // Kategori tablosu ayarları
+        kategoriAdiColumn.setCellValueFactory(cellData -> 
+            new javafx.beans.property.SimpleStringProperty(cellData.getValue().getAd()));
+        urunSayisiColumn.setCellValueFactory(cellData -> 
+            new javafx.beans.property.SimpleObjectProperty<>(cellData.getValue().getUrunSayisi()));
+        kategoriTable.setItems(kategoriler);
 
         // Borçlu müşteriler tablosu ayarları
         borcluMusteriAdiColumn.setCellValueFactory(cellData -> 
@@ -110,6 +131,11 @@ public class MainPageController {
 
                 // Borçlu müşteriler
                 borcluMusteriler.setAll(response.getBorcluMusteriler());
+                
+                // Kategoriler
+                if (response.getKategoriler() != null) {
+                    kategoriler.setAll(response.getKategoriler());
+                    kategorilerLabel.setText(response.getKategoriler().size() + " kategori");
             });
         }).exceptionally(throwable -> {
             javafx.application.Platform.runLater(() -> {
@@ -117,10 +143,12 @@ public class MainPageController {
                 kritikStokUrunler.clear();
                 sktUrunler.clear();
                 borcluMusteriler.clear();
+                kategoriler.clear();
                 kritikStokLabel.setText("Hata: Veriler alınamadı");
                 sktLabel.setText("");
                 toplamUrunLabel.setText("");
                 toplamBorcLabel.setText("");
+                kategorilerLabel.setText("");
             });
             return null;
         });
@@ -129,5 +157,30 @@ public class MainPageController {
     @FXML
     private void refreshClicked() {
         refreshDashboard();
+    }
+
+    @FXML
+    private void handleKategoriYonetimi() {
+        try {
+            // Kategori yönetimi sayfasını ana pencerede göster
+            javafx.fxml.FXMLLoader loader = new javafx.fxml.FXMLLoader();
+            loader.setLocation(getClass().getResource("/fxml/Kategoriler.fxml"));
+            javafx.scene.layout.AnchorPane page = (javafx.scene.layout.AnchorPane) loader.load();
+            
+            // Ana penceredeki merkez alanı güncelle
+            javafx.scene.layout.BorderPane rootLayout = (javafx.scene.layout.BorderPane) kategoriTable.getScene().getRoot();
+            rootLayout.setCenter(page);
+        } catch (Exception e) {
+            e.printStackTrace();
+            showError("Hata", "Kategori yönetimi sayfası açılırken bir hata oluştu", e.getMessage());
+        }
+    }
+
+    private void showError(String title, String header, String content) {
+        javafx.scene.control.Alert alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setHeaderText(header);
+        alert.setContentText(content);
+        alert.showAndWait();
     }
 }

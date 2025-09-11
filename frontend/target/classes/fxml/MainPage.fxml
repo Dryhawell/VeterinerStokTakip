@@ -1,50 +1,91 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
+
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import java.net.URL?>
 
-<BorderPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
-   <center>
-      <VBox spacing="20.0" alignment="CENTER">
-         <padding>
-            <Insets top="20" right="20" bottom="20" left="20"/>
-         </padding>
-         <children>
-            <Label text="Veteriner Stok Takip Sistemi" style="-fx-font-size: 24px;"/>
+<AnchorPane xmlns="http://javafx.com/javafx/22"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.veteriner.controller.MainPageController"
+            prefHeight="800.0" prefWidth="1200.0">
+    <VBox spacing="20.0" AnchorPane.topAnchor="20.0" AnchorPane.leftAnchor="20.0" 
+          AnchorPane.rightAnchor="20.0" AnchorPane.bottomAnchor="20.0">
+        <!-- Başlık ve Yenile butonu -->
+        <HBox spacing="20.0" alignment="CENTER_LEFT">
+            <Label text="Dashboard" style="-fx-font-size: 24px;"/>
+            <Button text="Yenile" onAction="#refreshClicked"/>
+        </HBox>
+
+        <!-- Özet bilgi kartları -->
+        <HBox spacing="20.0">
+            <VBox styleClass="info-card" spacing="10.0" HBox.hgrow="ALWAYS">
+                <padding>
+                    <Insets top="10" right="10" bottom="10" left="10"/>
+                </padding>
+                <Label fx:id="kritikStokLabel" style="-fx-font-size: 18px;" text="0 ürün kritik seviyede"/>
+                <TableView fx:id="kritikStokTable" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="kritikStokUrunAdiColumn" text="Ürün Adı" prefWidth="200.0"/>
+                        <TableColumn fx:id="kritikStokMevcutColumn" text="Mevcut Stok" prefWidth="100.0"/>
+                        <TableColumn fx:id="kritikStokMinimumColumn" text="Minimum Stok" prefWidth="100.0"/>
+                    </columns>
+                </TableView>
+            </VBox>
             
-            <GridPane hgap="20" vgap="20">
-               <!-- Kritik Stok Uyarıları -->
-               <VBox GridPane.columnIndex="0" GridPane.rowIndex="0" 
-                     style="-fx-background-color: #ffebee; -fx-padding: 10; -fx-background-radius: 5;">
-                  <Label text="Kritik Stok Uyarıları" style="-fx-font-weight: bold;"/>
-                  <Label fx:id="kritikStokLabel" text="0 ürün kritik seviyede"/>
-               </VBox>
-
-               <!-- SKT Uyarıları -->
-               <VBox GridPane.columnIndex="1" GridPane.rowIndex="0"
-                     style="-fx-background-color: #fff3e0; -fx-padding: 10; -fx-background-radius: 5;">
-                  <Label text="Son Kullanma Tarihi Yaklaşanlar" style="-fx-font-weight: bold;"/>
-                  <Label fx:id="sktLabel" text="0 ürünün SKT'si yaklaşıyor"/>
-               </VBox>
-
-               <!-- Toplam Ürün -->
-               <VBox GridPane.columnIndex="0" GridPane.rowIndex="1"
-                     style="-fx-background-color: #e3f2fd; -fx-padding: 10; -fx-background-radius: 5;">
-                  <Label text="Toplam Ürün" style="-fx-font-weight: bold;"/>
-                  <Label fx:id="toplamUrunLabel" text="0 çeşit ürün"/>
-               </VBox>
-
-               <!-- Toplam Borç -->
-               <VBox GridPane.columnIndex="1" GridPane.rowIndex="1"
-                     style="-fx-background-color: #e8f5e9; -fx-padding: 10; -fx-background-radius: 5;">
-                  <Label text="Toplam Borç" style="-fx-font-weight: bold;"/>
-                  <Label fx:id="toplamBorcLabel" text="0.00 TL"/>
-               </VBox>
-            </GridPane>
-         </children>
-      </VBox>
-   </center>
-</BorderPane>
+            <VBox styleClass="info-card" spacing="10.0" HBox.hgrow="ALWAYS">
+                <padding>
+                    <Insets top="10" right="10" bottom="10" left="10"/>
+                </padding>
+                <Label fx:id="sktLabel" style="-fx-font-size: 18px;" text="0 ürünün SKT'si yaklaşıyor"/>
+                <TableView fx:id="sktTable" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="sktUrunAdiColumn" text="Ürün Adı" prefWidth="200.0"/>
+                        <TableColumn fx:id="sktTarihiColumn" text="Son Kullanma Tarihi" prefWidth="150.0"/>
+                    </columns>
+                </TableView>
+            </VBox>
+        </HBox>
+        
+        <!-- Alt kısım -->
+        <HBox spacing="20.0">
+            <VBox styleClass="info-card" spacing="10.0" HBox.hgrow="ALWAYS">
+                <padding>
+                    <Insets top="10" right="10" bottom="10" left="10"/>
+                </padding>
+                <HBox spacing="20.0">
+                    <Label fx:id="toplamUrunLabel" style="-fx-font-size: 18px;" text="0 çeşit ürün"/>
+                    <Region HBox.hgrow="ALWAYS" />
+                    <Label fx:id="toplamBorcLabel" style="-fx-font-size: 18px;" text="0.00 TL toplam borç"/>
+                </HBox>
+                <TableView fx:id="borcluMusterilerTable" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="borcluMusteriAdiColumn" text="Müşteri Adı" prefWidth="200.0"/>
+                        <TableColumn fx:id="borcMiktariColumn" text="Borç Miktarı" prefWidth="150.0"/>
+                    </columns>
+                </TableView>
+            </VBox>
+            
+            <VBox styleClass="info-card" spacing="10.0" HBox.hgrow="ALWAYS">
+                <padding>
+                    <Insets top="10" right="10" bottom="10" left="10"/>
+                </padding>
+                <HBox spacing="20.0" alignment="CENTER_LEFT">
+                    <Label fx:id="kategorilerLabel" style="-fx-font-size: 18px;" text="Kategoriler"/>
+                    <Region HBox.hgrow="ALWAYS" />
+                    <Button text="Kategori Yönetimi" onAction="#handleKategoriYonetimi"/>
+                </HBox>
+                <TableView fx:id="kategoriTable" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="kategoriAdiColumn" text="Kategori Adı" prefWidth="200.0"/>
+                        <TableColumn fx:id="urunSayisiColumn" text="Ürün Sayısı" prefWidth="100.0"/>
+                    </columns>
+                </TableView>
+            </VBox>
+        </HBox>
+    </VBox>
+    
+    <stylesheets>
+        <URL value="@/styles/styles.css"/>
+    </stylesheets>
+</AnchorPane>
