@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+
+<BorderPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.veteriner.controller.RootLayoutController">
+   <top>
+      <MenuBar BorderPane.alignment="CENTER">
+         <menus>
+            <Menu text="Dosya">
+               <items>
+                  <MenuItem text="Yeni Satış" onAction="#handleYeniSatis" />
+                  <SeparatorMenuItem />
+                  <MenuItem text="Çıkış" onAction="#handleExit" />
+               </items>
+            </Menu>
+            <Menu text="Görünüm">
+               <items>
+                  <MenuItem text="Dashboard" onAction="#handleShowDashboard" />
+                  <SeparatorMenuItem />
+                  <MenuItem text="Kategoriler" onAction="#handleShowKategoriler" />
+                  <MenuItem text="Ürünler" onAction="#handleShowUrunler" />
+                  <SeparatorMenuItem />
+                  <MenuItem text="Müşteriler" onAction="#handleShowMusteriler" />
+                  <MenuItem text="Satışlar" onAction="#handleShowSatislar" />
+               </items>
+            </Menu>
+            <Menu text="Raporlar">
+               <items>
+                  <MenuItem text="Stok Durumu" onAction="#handleStokRaporu" />
+                  <MenuItem text="Satış Raporu" onAction="#handleSatisRaporu" />
+                  <MenuItem text="Müşteri Borç Raporu" onAction="#handleBorcRaporu" />
+               </items>
+            </Menu>
+            <Menu text="Yardım">
+               <items>
+                  <MenuItem text="Hakkında" onAction="#handleAbout" />
+               </items>
+            </Menu>
+         </menus>
+      </MenuBar>
+   </top>
+</BorderPane>
