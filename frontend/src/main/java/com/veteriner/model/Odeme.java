@@ -1,5 +1,7 @@
 package com.veteriner.model;
 
+import java.time.LocalDateTime;
+
 public class Odeme {
     private Integer id;
     private LocalDateTime tarih;

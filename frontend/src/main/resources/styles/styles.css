@@ -40,6 +40,14 @@
     background-color: #f5f5f5;
 }
 
+.dashboard-card {
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 3);
+}
+
+.dashboard-card Label {
+    -fx-text-fill: white;
+}
+
 .button {
     -fx-background-color: #2196f3;
     background-color: #2196f3;

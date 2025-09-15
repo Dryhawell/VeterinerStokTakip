@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.veteriner.controller.UrunController">
+    <VBox spacing="10" AnchorPane.leftAnchor="10" AnchorPane.rightAnchor="10" AnchorPane.topAnchor="10" AnchorPane.bottomAnchor="10">
+        <HBox spacing="10">
+            <Label text="Kategori:" />
+            <ComboBox fx:id="kategoriComboBox" prefWidth="200" />
+        </HBox>
+        
+        <GridPane hgap="10" vgap="10">
+            <Label text="Ürün Adı:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+            <TextField fx:id="urunAdiField" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+            
+            <Label text="Fiyat:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+            <TextField fx:id="fiyatField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            
+            <Label text="Stok Miktarı:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+            <TextField fx:id="stokField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+        </GridPane>
+        
+        <HBox spacing="10">
+            <Button text="Ekle" onAction="#handleUrunEkle" />
+            <Button text="Güncelle" onAction="#handleUrunGuncelle" />
+            <Button text="Sil" onAction="#handleUrunSil" />
+        </HBox>
+        
+        <TableView fx:id="urunTable" VBox.vgrow="ALWAYS" onMouseClicked="#handleUrunSec">
+            <columns>
+                <TableColumn fx:id="idColumn" text="ID" prefWidth="50" />
+                <TableColumn fx:id="kategoriColumn" text="Kategori" prefWidth="150" />
+                <TableColumn fx:id="adColumn" text="Ürün Adı" prefWidth="200" />
+                <TableColumn fx:id="fiyatColumn" text="Fiyat" prefWidth="100" />
+                <TableColumn fx:id="stokColumn" text="Stok" prefWidth="100" />
+            </columns>
+        </TableView>
+    </VBox>
+</AnchorPane>

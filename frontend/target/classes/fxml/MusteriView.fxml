@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.veteriner.controller.MusteriController">
+    <VBox spacing="10" AnchorPane.leftAnchor="10" AnchorPane.rightAnchor="10" AnchorPane.topAnchor="10" AnchorPane.bottomAnchor="10">
+        <GridPane hgap="10" vgap="10">
+            <Label text="Adı:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+            <TextField fx:id="adField" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+            
+            <Label text="Telefon:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+            <TextField fx:id="telefonField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            
+            <Label text="E-posta:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+            <TextField fx:id="epostaField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            
+            <Label text="Adres:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+            <TextArea fx:id="adresArea" wrapText="true" prefRowCount="3" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+        </GridPane>
+        
+        <HBox spacing="10">
+            <Button text="Ekle" onAction="#handleMusteriEkle" />
+            <Button text="Güncelle" onAction="#handleMusteriGuncelle" />
+            <Button text="Sil" onAction="#handleMusteriSil" />
+            <Button text="Ödeme Ekle" onAction="#handleOdemeEkle" />
+        </HBox>
+        
+        <TableView fx:id="musteriTable" VBox.vgrow="ALWAYS" onMouseClicked="#handleMusteriSec">
+            <columns>
+                <TableColumn fx:id="idColumn" text="ID" prefWidth="50" />
+                <TableColumn fx:id="adColumn" text="Adı" prefWidth="150" />
+                <TableColumn fx:id="telefonColumn" text="Telefon" prefWidth="120" />
+                <TableColumn fx:id="epostaColumn" text="E-posta" prefWidth="150" />
+                <TableColumn fx:id="adresColumn" text="Adres" prefWidth="200" />
+                <TableColumn fx:id="borcColumn" text="Toplam Borç" prefWidth="120" />
+            </columns>
+        </TableView>
+    </VBox>
+</AnchorPane>

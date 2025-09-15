@@ -6,6 +6,9 @@ public class Musteri {
     private String telefon;
     private String adres;
     private Double bakiye;
+    private String soyad;
+    private String email;
+    private Double borc;
 
     // Getters and Setters
     public Integer getId() {
@@ -46,5 +49,29 @@ public class Musteri {
 
     public void setBakiye(Double bakiye) {
         this.bakiye = bakiye;
+    }
+
+    public String getSoyad() {
+        return soyad;
+    }
+
+    public void setSoyad(String soyad) {
+        this.soyad = soyad;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Double getBorc() {
+        return borc;
+    }
+
+    public void setBorc(Double borc) {
+        this.borc = borc;
     }
 }

@@ -16,44 +16,34 @@ public class RootLayoutController {
         this.mainApp = mainApp;
     }
 
-    /**
-     * Yeni satış ekranını açar
-     */
     @FXML
-    private void handleYeniSatis() {
-        mainApp.showSatisView();
+    private void initialize() {
+        // İnitialize işlemleri
     }
 
-    /**
-     * Dashboard ekranını açar
-     */
     @FXML
     private void handleShowDashboard() {
         mainApp.showDashboardView();
     }
 
-    /**
-     * Kategoriler ekranını açar
-     */
     @FXML
     private void handleShowKategoriler() {
         mainApp.showKategoriView();
     }
 
-    /**
-     * Ürünler ekranını açar
-     */
     @FXML
     private void handleShowUrunler() {
         mainApp.showUrunView();
     }
 
-    /**
-     * Müşteriler ekranını açar
-     */
     @FXML
     private void handleShowMusteriler() {
         mainApp.showMusteriView();
+    }
+
+    @FXML
+    private void handleYeniSatis() {
+        mainApp.showSatisView();
     }
 
     /**
@@ -61,7 +51,7 @@ public class RootLayoutController {
      */
     @FXML
     private void handleShowSatislar() {
-        mainApp.showSatislarView();
+        mainApp.showSatisView();
     }
 
     /**

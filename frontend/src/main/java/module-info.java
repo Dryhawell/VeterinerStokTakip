@@ -1,17 +1,15 @@
 module com.veteriner {
+    requires transitive javafx.graphics;
     requires javafx.controls;
     requires javafx.fxml;
     requires retrofit2;
     requires com.google.gson;
     requires java.sql;
     requires retrofit2.converter.gson;
-    requires com.itextpdf;
-    requires org.apache.poi.poi;
-    requires org.apache.poi.ooxml;
 
-    opens com.veteriner to javafx.fxml;
+    opens com.veteriner to javafx.fxml, java.base;
     opens com.veteriner.controller to javafx.fxml;
-    opens com.veteriner.model to com.google.gson;
+    opens com.veteriner.model to com.google.gson, java.base;
     
     exports com.veteriner;
     exports com.veteriner.controller;

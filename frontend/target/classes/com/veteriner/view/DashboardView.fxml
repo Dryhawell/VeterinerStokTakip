@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.geometry.Insets?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.veteriner.controller.DashboardController">
+   <children>
+      <GridPane AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" AnchorPane.bottomAnchor="10.0" hgap="10" vgap="10">
+         <!-- Üst bilgi kartları -->
+         <HBox spacing="20" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.columnSpan="2">
+            <!-- Günlük Satış -->
+            <VBox styleClass="dashboard-card">
+               <padding>
+                  <Insets top="10" right="20" bottom="10" left="20"/>
+               </padding>
+               <Label text="Günlük Satış" styleClass="card-title"/>
+               <Label fx:id="gunlukSatisLabel" text="0 TL" styleClass="card-value"/>
+            </VBox>
+            <!-- Aylık Satış -->
+            <VBox styleClass="dashboard-card">
+               <padding>
+                  <Insets top="10" right="20" bottom="10" left="20"/>
+               </padding>
+               <Label text="Aylık Satış" styleClass="card-title"/>
+               <Label fx:id="aylikSatisLabel" text="0 TL" styleClass="card-value"/>
+            </VBox>
+            <!-- Toplam Borç -->
+            <VBox styleClass="dashboard-card">
+               <padding>
+                  <Insets top="10" right="20" bottom="10" left="20"/>
+               </padding>
+               <Label text="Toplam Borç" styleClass="card-title"/>
+               <Label fx:id="toplamBorcLabel" text="0 TL" styleClass="card-value"/>
+            </VBox>
+         </HBox>
+
+         <!-- Kritik stok ürünler -->
+         <VBox GridPane.columnIndex="0" GridPane.rowIndex="1">
+            <Label text="Kritik Stok Seviyesindeki Ürünler" styleClass="section-title"/>
+            <ListView fx:id="kritikStokListView" prefHeight="200.0"/>
+         </VBox>
+
+         <!-- Borçlu müşteriler -->
+         <VBox GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <Label text="Borçlu Müşteriler" styleClass="section-title"/>
+            <ListView fx:id="borcluMusterilerListView" prefHeight="200.0"/>
+         </VBox>
+
+         <!-- Son satışlar grafiği -->
+         <VBox GridPane.columnIndex="0" GridPane.rowIndex="2" GridPane.columnSpan="2">
+            <Label text="Son Satışlar" styleClass="section-title"/>
+            <BarChart fx:id="satislarChart">
+               <xAxis>
+                  <CategoryAxis label="Tarih"/>
+               </xAxis>
+               <yAxis>
+                  <NumberAxis label="Tutar (TL)"/>
+               </yAxis>
+            </BarChart>
+         </VBox>
+      </GridPane>
+   </children>
+</AnchorPane>

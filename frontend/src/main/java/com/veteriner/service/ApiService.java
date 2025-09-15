@@ -1,13 +1,13 @@
-package com.veteriner.service;
+﻿package com.veteriner.service;
 
 import com.veteriner.model.*;
 import retrofit2.Call;
-import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
+import retrofit2.Response;
 
 public class ApiService {
     private static final String BASE_URL = "http://localhost:8000";
@@ -19,7 +19,6 @@ public class ApiService {
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build();
-
         api = retrofit.create(ApiInterface.class);
     }
 
@@ -30,29 +29,26 @@ public class ApiService {
         return instance;
     }
 
-    // Dashboard ve Uyarılar
-    public CompletableFuture<UyariResponse> getDashboard() {
+    public CompletableFuture<Dashboard> getDashboard() {
         return CompletableFuture.supplyAsync(() -> {
             try {
-                return api.getDashboard().execute().body();
+                Response<Dashboard> response = api.getDashboard().execute();
+                return response.body();
             } catch (Exception e) {
                 e.printStackTrace();
-                return new UyariResponse();
+                return new Dashboard();
             }
         });
     }
 
-    // Kategori metodları
     public CompletableFuture<List<Kategori>> getKategoriler() {
         return CompletableFuture.supplyAsync(() -> {
             try {
-                var response = api.getKategoriler().execute();
+                Response<List<Kategori>> response = api.getKategoriler().execute();
                 if (response.isSuccessful()) {
                     return response.body();
-                } else {
-                    String errorMessage = response.errorBody() != null ? response.errorBody().toString() : "Bilinmeyen hata";
-                    throw new RuntimeException("Kategoriler alınamadı: " + errorMessage);
                 }
+                throw new RuntimeException("Kategoriler alınamadı");
             } catch (Exception e) {
                 throw new RuntimeException("Kategoriler alınamadı", e);
             }
@@ -62,13 +58,11 @@ public class ApiService {
     public CompletableFuture<Kategori> createKategori(Kategori kategori) {
         return CompletableFuture.supplyAsync(() -> {
             try {
-                var response = api.createKategori(kategori).execute();
+                Response<Kategori> response = api.createKategori(kategori).execute();
                 if (response.isSuccessful()) {
                     return response.body();
-                } else {
-                    String errorMessage = response.errorBody() != null ? response.errorBody().toString() : "Bilinmeyen hata";
-                    throw new RuntimeException("Kategori eklenemedi: " + errorMessage);
                 }
+                throw new RuntimeException("Kategori eklenemedi");
             } catch (Exception e) {
                 throw new RuntimeException("Kategori eklenemedi", e);
             }
@@ -78,13 +72,11 @@ public class ApiService {
     public CompletableFuture<Kategori> updateKategori(Integer id, Kategori kategori) {
         return CompletableFuture.supplyAsync(() -> {
             try {
-                var response = api.updateKategori(id, kategori).execute();
+                Response<Kategori> response = api.updateKategori(id, kategori).execute();
                 if (response.isSuccessful()) {
                     return response.body();
-                } else {
-                    String errorMessage = response.errorBody() != null ? response.errorBody().toString() : "Bilinmeyen hata";
-                    throw new RuntimeException("Kategori güncellenemedi: " + errorMessage);
                 }
+                throw new RuntimeException("Kategori güncellenemedi");
             } catch (Exception e) {
                 throw new RuntimeException("Kategori güncellenemedi", e);
             }
@@ -94,29 +86,25 @@ public class ApiService {
     public CompletableFuture<Void> deleteKategori(Integer id) {
         return CompletableFuture.supplyAsync(() -> {
             try {
-                var response = api.deleteKategori(id).execute();
+                Response<Void> response = api.deleteKategori(id).execute();
                 if (response.isSuccessful()) {
                     return null;
-                } else {
-                    String errorMessage = response.errorBody() != null ? response.errorBody().toString() : "Bilinmeyen hata";
-                    throw new RuntimeException("Kategori silinemedi: " + errorMessage);
                 }
+                throw new RuntimeException("Kategori silinemedi");
             } catch (Exception e) {
                 throw new RuntimeException("Kategori silinemedi", e);
             }
         });
     }
 
-    // Ürün metodları
     public CompletableFuture<List<Urun>> getUrunler() {
         return CompletableFuture.supplyAsync(() -> {
             try {
-                var response = api.getUrunler().execute();
-                if (response.isSuccessful() && response.body() != null) {
+                Response<List<Urun>> response = api.getUrunler().execute();
+                if (response.isSuccessful()) {
                     return response.body();
-                } else {
-                    throw new RuntimeException("Ürünler alınamadı: " + response.message());
                 }
+                throw new RuntimeException("Ürünler alınamadı");
             } catch (Exception e) {
                 throw new RuntimeException("Ürünler alınamadı", e);
             }
@@ -126,12 +114,11 @@ public class ApiService {
     public CompletableFuture<Urun> createUrun(Urun urun) {
         return CompletableFuture.supplyAsync(() -> {
             try {
-                var response = api.createUrun(urun).execute();
-                if (response.isSuccessful() && response.body() != null) {
+                Response<Urun> response = api.createUrun(urun).execute();
+                if (response.isSuccessful()) {
                     return response.body();
-                } else {
-                    throw new RuntimeException("Ürün eklenemedi: " + response.message());
                 }
+                throw new RuntimeException("Ürün eklenemedi");
             } catch (Exception e) {
                 throw new RuntimeException("Ürün eklenemedi", e);
             }
@@ -141,12 +128,11 @@ public class ApiService {
     public CompletableFuture<Urun> updateUrun(Integer id, Urun urun) {
         return CompletableFuture.supplyAsync(() -> {
             try {
-                var response = api.updateUrun(id, urun).execute();
-                if (response.isSuccessful() && response.body() != null) {
+                Response<Urun> response = api.updateUrun(id, urun).execute();
+                if (response.isSuccessful()) {
                     return response.body();
-                } else {
-                    throw new RuntimeException("Ürün güncellenemedi: " + response.message());
                 }
+                throw new RuntimeException("Ürün güncellenemedi");
             } catch (Exception e) {
                 throw new RuntimeException("Ürün güncellenemedi", e);
             }
@@ -156,26 +142,27 @@ public class ApiService {
     public CompletableFuture<Void> deleteUrun(Integer id) {
         return CompletableFuture.supplyAsync(() -> {
             try {
-                var response = api.deleteUrun(id).execute();
+                Response<Void> response = api.deleteUrun(id).execute();
                 if (response.isSuccessful()) {
                     return null;
-                } else {
-                    throw new RuntimeException("Ürün silinemedi: " + response.message());
                 }
+                throw new RuntimeException("Ürün silinemedi");
             } catch (Exception e) {
                 throw new RuntimeException("Ürün silinemedi", e);
             }
         });
     }
 
-    // Müşteri metodları
     public CompletableFuture<List<Musteri>> getMusteriler() {
         return CompletableFuture.supplyAsync(() -> {
             try {
-                return api.getMusteriler().execute().body();
+                Response<List<Musteri>> response = api.getMusteriler().execute();
+                if (response.isSuccessful()) {
+                    return response.body();
+                }
+                throw new RuntimeException("Müşteriler alınamadı");
             } catch (Exception e) {
-                e.printStackTrace();
-                return List.of();
+                throw new RuntimeException("Müşteriler alınamadı", e);
             }
         });
     }
@@ -183,10 +170,13 @@ public class ApiService {
     public CompletableFuture<Musteri> createMusteri(Musteri musteri) {
         return CompletableFuture.supplyAsync(() -> {
             try {
-                return api.createMusteri(musteri).execute().body();
+                Response<Musteri> response = api.createMusteri(musteri).execute();
+                if (response.isSuccessful()) {
+                    return response.body();
+                }
+                throw new RuntimeException("Müşteri eklenemedi");
             } catch (Exception e) {
-                e.printStackTrace();
-                return null;
+                throw new RuntimeException("Müşteri eklenemedi", e);
             }
         });
     }
@@ -194,10 +184,13 @@ public class ApiService {
     public CompletableFuture<Musteri> updateMusteri(Integer id, Musteri musteri) {
         return CompletableFuture.supplyAsync(() -> {
             try {
-                return api.updateMusteri(id, musteri).execute().body();
+                Response<Musteri> response = api.updateMusteri(id, musteri).execute();
+                if (response.isSuccessful()) {
+                    return response.body();
+                }
+                throw new RuntimeException("Müşteri güncellenemedi");
             } catch (Exception e) {
-                e.printStackTrace();
-                return null;
+                throw new RuntimeException("Müşteri güncellenemedi", e);
             }
         });
     }
@@ -205,34 +198,38 @@ public class ApiService {
     public CompletableFuture<Boolean> deleteMusteri(Integer id) {
         return CompletableFuture.supplyAsync(() -> {
             try {
-                api.deleteMusteri(id).execute();
-                return true;
+                Response<Void> response = api.deleteMusteri(id).execute();
+                return response.isSuccessful();
             } catch (Exception e) {
-                e.printStackTrace();
-                return false;
+                throw new RuntimeException("Müşteri silinemedi", e);
             }
         });
     }
 
-    // Satış metodları
     public CompletableFuture<List<Satis>> getSatislar() {
         return CompletableFuture.supplyAsync(() -> {
             try {
-                return api.getSatislar().execute().body();
+                Response<List<Satis>> response = api.getSatislar().execute();
+                if (response.isSuccessful()) {
+                    return response.body();
+                }
+                throw new RuntimeException("Satışlar alınamadı");
             } catch (Exception e) {
-                e.printStackTrace();
-                return List.of();
+                throw new RuntimeException("Satışlar alınamadı", e);
             }
         });
     }
 
-    public CompletableFuture<Satis> createSatis(Satis satis) {
+    public CompletableFuture<Satis> createSatis(SatisCreate satisCreate) {
         return CompletableFuture.supplyAsync(() -> {
             try {
-                return api.createSatis(satis).execute().body();
+                Response<Satis> response = api.createSatis(satisCreate).execute();
+                if (response.isSuccessful()) {
+                    return response.body();
+                }
+                throw new RuntimeException("Satış kaydedilemedi");
             } catch (Exception e) {
-                e.printStackTrace();
-                return null;
+                throw new RuntimeException("Satış kaydedilemedi", e);
             }
         });
     }
@@ -240,10 +237,41 @@ public class ApiService {
     public CompletableFuture<Satis> getSatisById(Integer id) {
         return CompletableFuture.supplyAsync(() -> {
             try {
-                return api.getSatisById(id).execute().body();
+                Response<Satis> response = api.getSatisById(id).execute();
+                if (response.isSuccessful()) {
+                    return response.body();
+                }
+                throw new RuntimeException("Satış bulunamadı");
             } catch (Exception e) {
-                e.printStackTrace();
-                return null;
+                throw new RuntimeException("Satış bulunamadı", e);
+            }
+        });
+    }
+
+    public CompletableFuture<List<Odeme>> getOdemeler(Integer musteriId) {
+        return CompletableFuture.supplyAsync(() -> {
+            try {
+                Response<List<Odeme>> response = api.getOdemelerByMusteriId(musteriId).execute();
+                if (response.isSuccessful()) {
+                    return response.body();
+                }
+                throw new RuntimeException("Ödemeler alınamadı");
+            } catch (Exception e) {
+                throw new RuntimeException("Ödemeler alınamadı", e);
+            }
+        });
+    }
+
+    public CompletableFuture<Odeme> createOdeme(Odeme odeme) {
+        return CompletableFuture.supplyAsync(() -> {
+            try {
+                Response<Odeme> response = api.createOdeme(odeme).execute();
+                if (response.isSuccessful()) {
+                    return response.body();
+                }
+                throw new RuntimeException("Ödeme kaydedilemedi");
+            } catch (Exception e) {
+                throw new RuntimeException("Ödeme kaydedilemedi", e);
             }
         });
     }

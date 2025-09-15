@@ -10,6 +10,8 @@ public class Urun {
     private Integer minimumStok;
     private Double birimFiyat;
     private LocalDate sonKullanmaTarihi;
+    private Double satisFiyati;
+    private String birim;
 
     // Getters and Setters
     public Integer getId() {
@@ -66,5 +68,21 @@ public class Urun {
 
     public void setSonKullanmaTarihi(LocalDate sonKullanmaTarihi) {
         this.sonKullanmaTarihi = sonKullanmaTarihi;
+    }
+
+    public Double getSatisFiyati() {
+        return satisFiyati;
+    }
+
+    public void setSatisFiyati(Double satisFiyati) {
+        this.satisFiyati = satisFiyati;
+    }
+
+    public String getBirim() {
+        return birim;
+    }
+
+    public void setBirim(String birim) {
+        this.birim = birim;
     }
 }

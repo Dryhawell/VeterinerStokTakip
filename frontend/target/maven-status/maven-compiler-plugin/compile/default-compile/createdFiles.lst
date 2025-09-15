@@ -1,0 +1,10 @@
+com\veteriner\MainApp.class
+com\veteriner\controller\KategoriController.class
+com\veteriner\model\UyariResponse.class
+com\veteriner\model\Urun.class
+com\veteriner\model\Kategori.class
+module-info.class
+com\veteriner\model\Musteri.class
+com\veteriner\model\SatisDetay.class
+com\veteriner\controller\KategoriController$1.class
+com\veteriner\model\KategoriOzet.class

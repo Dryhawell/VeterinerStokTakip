@@ -11,37 +11,25 @@
    <top>
       <MenuBar BorderPane.alignment="CENTER">
         <menus>
-          <Menu mnemonicParsing="false" text="Ürünler">
+          <Menu mnemonicParsing="false" text="Ana Sayfa">
             <items>
-              <MenuItem fx:id="urunListesiMenuItem" mnemonicParsing="false" text="Ürün Listesi" />
-              <MenuItem fx:id="yeniUrunMenuItem" mnemonicParsing="false" text="Yeni Ürün" />
-              <MenuItem fx:id="kategorilerMenuItem" mnemonicParsing="false" text="Kategoriler" />
+              <MenuItem fx:id="dashboardMenuItem" onAction="#handleShowDashboard" text="Dashboard" />
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" text="Stok">
+          <Menu mnemonicParsing="false" text="Ürünler">
             <items>
-              <MenuItem fx:id="stokGirisMenuItem" mnemonicParsing="false" text="Stok Giriş" />
-              <MenuItem fx:id="stokCikisMenuItem" mnemonicParsing="false" text="Stok Çıkış" />
-              <MenuItem fx:id="stokHareketleriMenuItem" mnemonicParsing="false" text="Stok Hareketleri" />
+              <MenuItem fx:id="kategorilerMenuItem" onAction="#handleShowKategoriler" text="Kategoriler" />
+              <MenuItem fx:id="urunlerMenuItem" onAction="#handleShowUrunler" text="Ürünler" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Müşteriler">
             <items>
-              <MenuItem fx:id="musteriListesiMenuItem" mnemonicParsing="false" text="Müşteri Listesi" />
-              <MenuItem fx:id="yeniMusteriMenuItem" mnemonicParsing="false" text="Yeni Müşteri" />
+              <MenuItem fx:id="musteriMenuItem" onAction="#handleShowMusteriler" text="Müşteriler" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Satış">
             <items>
-              <MenuItem fx:id="yeniSatisMenuItem" mnemonicParsing="false" text="Yeni Satış" />
-              <MenuItem fx:id="satisGecmisiMenuItem" mnemonicParsing="false" text="Satış Geçmişi" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Raporlar">
-            <items>
-              <MenuItem fx:id="stokRaporuMenuItem" mnemonicParsing="false" text="Stok Raporu" />
-              <MenuItem fx:id="satisRaporuMenuItem" mnemonicParsing="false" text="Satış Raporu" />
-              <MenuItem fx:id="borcRaporuMenuItem" mnemonicParsing="false" text="Borç Raporu" />
+              <MenuItem fx:id="yeniSatisMenuItem" onAction="#handleYeniSatis" text="Yeni Satış" />
             </items>
           </Menu>
         </menus>

@@ -6,56 +6,66 @@ import retrofit2.http.*;
 import java.util.List;
 
 public interface ApiInterface {
-    // Dashboard ve Uyarılar
-    @GET("/dashboard")
-    Call<UyariResponse> getDashboard();
+    // Dashboard
+    @GET("dashboard/")
+    Call<Dashboard> getDashboard();
 
     // Kategori endpoints
-    @GET("/kategoriler")
+    @GET("kategoriler/")
     Call<List<Kategori>> getKategoriler();
 
-    @POST("/kategoriler")
+    @POST("kategoriler/")
     Call<Kategori> createKategori(@Body Kategori kategori);
 
-    @PUT("/kategoriler/{id}")
-    Call<Kategori> updateKategori(@Path("id") Integer id, @Body Kategori kategori);
+    @PUT("kategoriler/{id}/")
+    Call<Kategori> updateKategori(@Path("id") int id, @Body Kategori kategori);
 
-    @DELETE("/kategoriler/{id}")
-    Call<Void> deleteKategori(@Path("id") Integer id);
+    @DELETE("kategoriler/{id}/")
+    Call<Void> deleteKategori(@Path("id") int id);
 
     // Ürün endpoints
-    @GET("/urunler")
+    @GET("urunler/")
     Call<List<Urun>> getUrunler();
 
-    @POST("/urunler")
+    @POST("urunler/")
     Call<Urun> createUrun(@Body Urun urun);
 
-    @PUT("/urunler/{id}")
-    Call<Urun> updateUrun(@Path("id") Integer id, @Body Urun urun);
+    @PUT("urunler/{id}/")
+    Call<Urun> updateUrun(@Path("id") int id, @Body Urun urun);
 
-    @DELETE("/urunler/{id}")
-    Call<Void> deleteUrun(@Path("id") Integer id);
+    @DELETE("urunler/{id}/")
+    Call<Void> deleteUrun(@Path("id") int id);
 
     // Müşteri endpoints
-    @GET("/musteriler")
+    @GET("musteriler/")
     Call<List<Musteri>> getMusteriler();
 
-    @POST("/musteriler")
+    @POST("musteriler/")
     Call<Musteri> createMusteri(@Body Musteri musteri);
 
-    @PUT("/musteriler/{id}")
-    Call<Musteri> updateMusteri(@Path("id") Integer id, @Body Musteri musteri);
+    @PUT("musteriler/{id}/")
+    Call<Musteri> updateMusteri(@Path("id") int id, @Body Musteri musteri);
 
-    @DELETE("/musteriler/{id}")
-    Call<Void> deleteMusteri(@Path("id") Integer id);
+    @DELETE("musteriler/{id}/")
+    Call<Void> deleteMusteri(@Path("id") int id);
 
     // Satış endpoints
-    @GET("/satislar")
+    @GET("satislar/")
     Call<List<Satis>> getSatislar();
 
-    @POST("/satislar")
-    Call<Satis> createSatis(@Body Satis satis);
+    @POST("satislar/")
+    Call<Satis> createSatis(@Body SatisCreate satis);
 
-    @GET("/satislar/{id}")
+    @GET("satislar/{id}/")
     Call<Satis> getSatisById(@Path("id") Integer id);
+
+    // Ödemeler
+    @GET("odemeler/")
+    Call<List<Odeme>> getOdemeler(@Query("musteri_id") Integer musteriId);
+
+    @POST("odemeler/")
+    Call<Odeme> createOdeme(@Body Odeme odeme);
+
+    @GET("odemeler/{musteri_id}/")
+    Call<List<Odeme>> getOdemelerByMusteriId(@Path("musteri_id") Integer musteriId);
 }
