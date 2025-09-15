@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" 
+      fx:controller="com.veteriner.controller.MusteriController" spacing="10" styleClass="content-vbox">
+    
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="Müşteri Yönetimi" styleClass="view-title"/>
+    </HBox>
+
+    <!-- Form Area -->
+    <GridPane hgap="10" vgap="10">
+        <Label text="Ad:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+        <TextField fx:id="txtAd" promptText="Müşteri adını giriniz" 
+                  GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+        
+        <Label text="Soyad:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+        <TextField fx:id="txtSoyad" promptText="Müşteri soyadını giriniz" 
+                  GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+        <Label text="Telefon:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+        <TextField fx:id="txtTelefon" promptText="(5XX) XXX-XXXX" 
+                  GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+
+        <Label text="E-posta:" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+        <TextField fx:id="txtEmail" promptText="ornek@email.com" 
+                  GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+
+        <Label text="Adres:" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+        <TextArea fx:id="txtAdres" promptText="Adres giriniz" wrapText="true"
+                  prefRowCount="2" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+
+        <Label text="Borç:" GridPane.columnIndex="0" GridPane.rowIndex="5"/>
+        <TextField fx:id="txtBorc" promptText="0.00" disable="true"
+                  GridPane.columnIndex="1" GridPane.rowIndex="5"/>
+
+        <HBox spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="6">
+            <Button fx:id="btnKaydet" text="Kaydet" onAction="#handleKaydet" styleClass="primary-button"/>
+            <Button fx:id="btnIptal" text="İptal" onAction="#handleIptal" styleClass="secondary-button"/>
+        </HBox>
+    </GridPane>
+
+    <!-- Table Area -->
+    <TabPane VBox.vgrow="ALWAYS">
+        <Tab text="Müşteriler" closable="false">
+            <VBox spacing="10">
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <TextField fx:id="txtArama" promptText="Müşteri ara..." HBox.hgrow="ALWAYS"/>
+                    <Button fx:id="btnAra" text="Ara" onAction="#handleAra"/>
+                </HBox>
+                
+                <TableView fx:id="musteriTable" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="colId" text="ID" prefWidth="50"/>
+                        <TableColumn fx:id="colAd" text="Ad" prefWidth="100"/>
+                        <TableColumn fx:id="colSoyad" text="Soyad" prefWidth="100"/>
+                        <TableColumn fx:id="colTelefon" text="Telefon" prefWidth="120"/>
+                        <TableColumn fx:id="colEmail" text="E-posta" prefWidth="150"/>
+                        <TableColumn fx:id="colBorc" text="Borç" prefWidth="100"/>
+                        <TableColumn fx:id="colIslemler" text="İşlemler" prefWidth="150"/>
+                    </columns>
+                </TableView>
+            </VBox>
+        </Tab>
+        <Tab text="Borç/Ödeme Geçmişi" closable="false">
+            <VBox spacing="10">
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <Label text="Seçili Müşteri:"/>
+                    <Label fx:id="lblSeciliMusteri" text=""/>
+                </HBox>
+                
+                <TableView fx:id="odemelerTable" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="colOdemeTarih" text="Tarih" prefWidth="150"/>
+                        <TableColumn fx:id="colOdemeTutar" text="Tutar" prefWidth="100"/>
+                        <TableColumn fx:id="colOdemeAciklama" text="Açıklama" prefWidth="300"/>
+                    </columns>
+                </TableView>
+                
+                <HBox spacing="10" alignment="CENTER_RIGHT">
+                    <Label text="Ödeme Tutarı:"/>
+                    <TextField fx:id="txtOdemeTutar" promptText="0.00" prefWidth="150"/>
+                    <Label text="Açıklama:"/>
+                    <TextField fx:id="txtOdemeAciklama" promptText="Ödeme açıklaması..." prefWidth="200"/>
+                    <Button fx:id="btnOdemeAl" text="Ödeme Al" onAction="#handleOdemeAl" 
+                            disable="true" styleClass="primary-button"/>
+                </HBox>
+            </VBox>
+        </Tab>
+    </TabPane>
+
+    <!-- Status Bar -->
+    <HBox spacing="10" alignment="CENTER_RIGHT">
+        <Label fx:id="lblStatus" text=""/>
+    </HBox>
+</VBox>

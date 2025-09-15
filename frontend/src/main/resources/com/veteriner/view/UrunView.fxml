@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" 
+      fx:controller="com.veteriner.controller.UrunController" spacing="10" styleClass="content-vbox">
+    
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="Ürün Yönetimi" styleClass="view-title"/>
+    </HBox>
+
+    <!-- Form Area -->
+    <GridPane hgap="10" vgap="10">
+        <Label text="Ürün Adı:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+        <TextField fx:id="txtUrunAdi" promptText="Ürün adını giriniz" 
+                  GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+        
+        <Label text="Kategori:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+        <ComboBox fx:id="cmbKategori" prefWidth="200" 
+                  GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+        <Label text="Marka:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+        <TextField fx:id="txtMarka" promptText="Marka giriniz"
+                  GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+
+        <Label text="Birim:" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+        <TextField fx:id="txtBirim" promptText="Birim giriniz (adet, kg, lt vb.)"
+                  GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+
+        <Label text="Alış Fiyatı:" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+        <TextField fx:id="txtAlisFiyati" promptText="0.00"
+                  GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+
+        <Label text="Satış Fiyatı:" GridPane.columnIndex="0" GridPane.rowIndex="5"/>
+        <TextField fx:id="txtSatisFiyati" promptText="0.00"
+                  GridPane.columnIndex="1" GridPane.rowIndex="5"/>
+
+        <Label text="Stok Miktarı:" GridPane.columnIndex="0" GridPane.rowIndex="6"/>
+        <TextField fx:id="txtStokMiktari" promptText="0"
+                  GridPane.columnIndex="1" GridPane.rowIndex="6"/>
+
+        <Label text="Kritik Stok:" GridPane.columnIndex="0" GridPane.rowIndex="7"/>
+        <TextField fx:id="txtKritikStok" promptText="0"
+                  GridPane.columnIndex="1" GridPane.rowIndex="7"/>
+
+        <Label text="Açıklama:" GridPane.columnIndex="0" GridPane.rowIndex="8"/>
+        <TextArea fx:id="txtAciklama" promptText="Açıklama giriniz" wrapText="true"
+                  prefRowCount="2" GridPane.columnIndex="1" GridPane.rowIndex="8"/>
+
+        <HBox spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="9">
+            <Button fx:id="btnKaydet" text="Kaydet" onAction="#handleKaydet" styleClass="primary-button"/>
+            <Button fx:id="btnIptal" text="İptal" onAction="#handleIptal" styleClass="secondary-button"/>
+        </HBox>
+    </GridPane>
+
+    <!-- Table Area -->
+    <TableView fx:id="urunTable" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="colId" text="ID" prefWidth="50"/>
+            <TableColumn fx:id="colUrunAdi" text="Ürün Adı" prefWidth="150"/>
+            <TableColumn fx:id="colKategori" text="Kategori" prefWidth="100"/>
+            <TableColumn fx:id="colMarka" text="Marka" prefWidth="100"/>
+            <TableColumn fx:id="colBirim" text="Birim" prefWidth="70"/>
+            <TableColumn fx:id="colAlisFiyati" text="Alış Fiyatı" prefWidth="100"/>
+            <TableColumn fx:id="colSatisFiyati" text="Satış Fiyatı" prefWidth="100"/>
+            <TableColumn fx:id="colStokMiktari" text="Stok" prefWidth="70"/>
+            <TableColumn fx:id="colKritikStok" text="Kritik Stok" prefWidth="70"/>
+            <TableColumn fx:id="colIslemler" text="İşlemler" prefWidth="100"/>
+        </columns>
+    </TableView>
+
+    <!-- Status Bar -->
+    <HBox spacing="10" alignment="CENTER_RIGHT">
+        <Label fx:id="lblStatus" text=""/>
+    </HBox>
+</VBox>
