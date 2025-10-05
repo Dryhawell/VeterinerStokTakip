@@ -37,3 +37,16 @@ ENV/
 
 # Logs
 *.log
+
+# Maven
+target/
+*.class
+.mvn/
+
+# Java
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
