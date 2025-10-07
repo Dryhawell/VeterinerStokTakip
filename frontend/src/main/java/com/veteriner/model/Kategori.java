@@ -4,7 +4,7 @@ public class Kategori {
     private Integer id;
     private String ad;
 
-    // Getters and Setters
+    // Getter ve Setter ekliyoruz
     public Integer getId() {
         return id;
     }

@@ -10,7 +10,7 @@ public class Satis {
     private LocalDateTime tarih;
     private List<SatisDetay> satisDetaylari;
 
-    // Getters and Setters
+    // Getter ve Setter ekliyom
     public Integer getId() {
         return id;
     }

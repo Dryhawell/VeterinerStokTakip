@@ -68,7 +68,7 @@ public class Dashboard {
         this.enCokSatilanUrunler = enCokSatilanUrunler;
     }
 
-    // İç sınıflar
+    // İç sınıfları ekliyoruz
     public static class KritikUrun {
         private String ad;
         private int stok;

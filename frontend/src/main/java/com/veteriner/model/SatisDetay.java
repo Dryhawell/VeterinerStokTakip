@@ -7,7 +7,7 @@ public class SatisDetay {
     private Integer miktar;
     private Double birimFiyat;
 
-    // Getters and Setters
+    // Getter ve Setter ekliyoruz
     public Integer getId() {
         return id;
     }

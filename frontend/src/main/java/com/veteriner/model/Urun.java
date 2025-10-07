@@ -13,7 +13,7 @@ public class Urun {
     private Double satisFiyati;
     private String birim;
 
-    // Getters and Setters
+    // Getter ve Setter ekliyoruz
     public Integer getId() {
         return id;
     }
