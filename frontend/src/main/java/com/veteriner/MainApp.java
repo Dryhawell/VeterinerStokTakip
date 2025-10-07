@@ -17,7 +17,7 @@ public class MainApp extends Application {
     @Override
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
-        this.primaryStage.setTitle("Veteriner Stok Takip Sistemi");
+        this.primaryStage.setTitle("Veteriner Stok Takip Programı");
         initRootLayout();
         showDashboardView();
     }
@@ -25,7 +25,7 @@ public class MainApp extends Application {
     private void initRootLayout() {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainApp.class.getResource("/fxml/RootLayout.fxml"));
+            loader.setLocation(getClass().getResource("/fxml/RootLayout.fxml"));
             rootLayout = (BorderPane) loader.load();
 
             Scene scene = new Scene(rootLayout);
@@ -48,7 +48,7 @@ public class MainApp extends Application {
             rootLayout.setCenter(dashboardView);
             
             DashboardController controller = loader.getController();
-            // controller.setMainApp(this); // Eğer controller'a MainApp referansı gerekirse
+            // controller.setMainApp(this); // Şayet controller'a MainApp referansı gerekirse diye ekledim :)
         } catch (Exception e) {
             e.printStackTrace();
         }

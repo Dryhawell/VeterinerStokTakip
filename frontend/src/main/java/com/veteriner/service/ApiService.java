@@ -1,4 +1,4 @@
-﻿package com.veteriner.service;
+package com.veteriner.service;
 
 import com.veteriner.model.*;
 import retrofit2.Call;
@@ -10,7 +10,7 @@ import java.util.concurrent.CompletableFuture;
 import retrofit2.Response;
 
 public class ApiService {
-    private static final String BASE_URL = "http://localhost:8000";
+    private static final String BASE_URL = "http://127.0.0.1:8081";
     private static ApiService instance;
     private final ApiInterface api;
 
@@ -33,8 +33,15 @@ public class ApiService {
         return CompletableFuture.supplyAsync(() -> {
             try {
                 Response<Dashboard> response = api.getDashboard().execute();
-                return response.body();
+                if (response.isSuccessful()) {
+                    System.out.println("Dashboard response successful: " + response.body());
+                    return response.body();
+                } else {
+                    System.err.println("Dashboard response failed: " + response.code());
+                    return new Dashboard();
+                }
             } catch (Exception e) {
+                System.err.println("Dashboard request failed: " + e.getMessage());
                 e.printStackTrace();
                 return new Dashboard();
             }
@@ -104,9 +111,9 @@ public class ApiService {
                 if (response.isSuccessful()) {
                     return response.body();
                 }
-                throw new RuntimeException("Ürünler alınamadı");
+                throw new RuntimeException("?r?nler al?namad?");
             } catch (Exception e) {
-                throw new RuntimeException("Ürünler alınamadı", e);
+                throw new RuntimeException("?r?nler al?namad?", e);
             }
         });
     }
@@ -118,9 +125,9 @@ public class ApiService {
                 if (response.isSuccessful()) {
                     return response.body();
                 }
-                throw new RuntimeException("Ürün eklenemedi");
+                throw new RuntimeException("?r?n eklenemedi");
             } catch (Exception e) {
-                throw new RuntimeException("Ürün eklenemedi", e);
+                throw new RuntimeException("?r?n eklenemedi", e);
             }
         });
     }
@@ -132,9 +139,9 @@ public class ApiService {
                 if (response.isSuccessful()) {
                     return response.body();
                 }
-                throw new RuntimeException("Ürün güncellenemedi");
+                throw new RuntimeException("?r?n g?ncellenemedi");
             } catch (Exception e) {
-                throw new RuntimeException("Ürün güncellenemedi", e);
+                throw new RuntimeException("?r?n g?ncellenemedi", e);
             }
         });
     }
@@ -146,9 +153,9 @@ public class ApiService {
                 if (response.isSuccessful()) {
                     return null;
                 }
-                throw new RuntimeException("Ürün silinemedi");
+                throw new RuntimeException("?r?n silinemedi");
             } catch (Exception e) {
-                throw new RuntimeException("Ürün silinemedi", e);
+                throw new RuntimeException("?r?n silinemedi", e);
             }
         });
     }
@@ -160,9 +167,9 @@ public class ApiService {
                 if (response.isSuccessful()) {
                     return response.body();
                 }
-                throw new RuntimeException("Müşteriler alınamadı");
+                throw new RuntimeException("M??teriler al?namad?");
             } catch (Exception e) {
-                throw new RuntimeException("Müşteriler alınamadı", e);
+                throw new RuntimeException("M??teriler al?namad?", e);
             }
         });
     }
@@ -174,9 +181,9 @@ public class ApiService {
                 if (response.isSuccessful()) {
                     return response.body();
                 }
-                throw new RuntimeException("Müşteri eklenemedi");
+                throw new RuntimeException("M??teri eklenemedi");
             } catch (Exception e) {
-                throw new RuntimeException("Müşteri eklenemedi", e);
+                throw new RuntimeException("M??teri eklenemedi", e);
             }
         });
     }
@@ -188,9 +195,9 @@ public class ApiService {
                 if (response.isSuccessful()) {
                     return response.body();
                 }
-                throw new RuntimeException("Müşteri güncellenemedi");
+                throw new RuntimeException("M??teri g?ncellenemedi");
             } catch (Exception e) {
-                throw new RuntimeException("Müşteri güncellenemedi", e);
+                throw new RuntimeException("M??teri g?ncellenemedi", e);
             }
         });
     }
@@ -201,7 +208,7 @@ public class ApiService {
                 Response<Void> response = api.deleteMusteri(id).execute();
                 return response.isSuccessful();
             } catch (Exception e) {
-                throw new RuntimeException("Müşteri silinemedi", e);
+                throw new RuntimeException("M??teri silinemedi", e);
             }
         });
     }
@@ -213,9 +220,9 @@ public class ApiService {
                 if (response.isSuccessful()) {
                     return response.body();
                 }
-                throw new RuntimeException("Satışlar alınamadı");
+                throw new RuntimeException("Sat??lar al?namad?");
             } catch (Exception e) {
-                throw new RuntimeException("Satışlar alınamadı", e);
+                throw new RuntimeException("Sat??lar al?namad?", e);
             }
         });
     }
@@ -227,9 +234,9 @@ public class ApiService {
                 if (response.isSuccessful()) {
                     return response.body();
                 }
-                throw new RuntimeException("Satış kaydedilemedi");
+                throw new RuntimeException("Sat?? kaydedilemedi");
             } catch (Exception e) {
-                throw new RuntimeException("Satış kaydedilemedi", e);
+                throw new RuntimeException("Sat?? kaydedilemedi", e);
             }
         });
     }
@@ -241,9 +248,9 @@ public class ApiService {
                 if (response.isSuccessful()) {
                     return response.body();
                 }
-                throw new RuntimeException("Satış bulunamadı");
+                throw new RuntimeException("Sat?? bulunamad?");
             } catch (Exception e) {
-                throw new RuntimeException("Satış bulunamadı", e);
+                throw new RuntimeException("Sat?? bulunamad?", e);
             }
         });
     }
@@ -255,9 +262,9 @@ public class ApiService {
                 if (response.isSuccessful()) {
                     return response.body();
                 }
-                throw new RuntimeException("Ödemeler alınamadı");
+                throw new RuntimeException("?demeler al?namad?");
             } catch (Exception e) {
-                throw new RuntimeException("Ödemeler alınamadı", e);
+                throw new RuntimeException("?demeler al?namad?", e);
             }
         });
     }
@@ -269,9 +276,9 @@ public class ApiService {
                 if (response.isSuccessful()) {
                     return response.body();
                 }
-                throw new RuntimeException("Ödeme kaydedilemedi");
+                throw new RuntimeException("?deme kaydedilemedi");
             } catch (Exception e) {
-                throw new RuntimeException("Ödeme kaydedilemedi", e);
+                throw new RuntimeException("?deme kaydedilemedi", e);
             }
         });
     }
