@@ -100,3 +100,34 @@ class Odeme(OdemeBase):
 
     class Config:
         from_attributes = True
+
+class KritikUrun(BaseModel):
+    id: int
+    ad: str
+    stok: int
+    kritikStok: int
+
+class BorcluMusteri(BaseModel):
+    ad: str
+    soyad: str
+    borc: float
+
+class SatisOzet(BaseModel):
+    id: int
+    tarih: datetime
+    toplamTutar: float
+    musteriAdi: str
+
+class UrunSatis(BaseModel):
+    id: int
+    ad: str
+    toplamSatis: int
+
+class DashboardSchema(BaseModel):
+    toplamBorc: float
+    gunlukSatis: float
+    aylikSatis: float
+    kritikUrunler: List[KritikUrun]
+    borcluMusteriler: List[BorcluMusteri]
+    sonSatislar: List[SatisOzet]
+    enCokSatilanUrunler: List[UrunSatis]
