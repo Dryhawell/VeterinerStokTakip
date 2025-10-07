@@ -7,13 +7,10 @@ import javafx.scene.chart.BarChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Alert;
 import com.veteriner.MainApp;
-import com.veteriner.model.Dashboard;
 import com.veteriner.service.ApiService;
 import javafx.application.Platform;
 import java.text.NumberFormat;
 import java.util.Locale;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class DashboardController {
     @FXML
@@ -34,39 +31,30 @@ public class DashboardController {
     @FXML
     private BarChart<String, Number> satislarChart;
 
-    private MainApp mainApp;
-    private Timer refreshTimer;
     private final NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance(Locale.forLanguageTag("tr-TR"));
 
     @FXML
     private void initialize() {
-        // Otomatik yenileme için timer başlat
-        startRefreshTimer();
-    }
-
-    public void setMainApp(MainApp mainApp) {
-        this.mainApp = mainApp;
+        // İlk yükleme
         refreshDashboard();
     }
 
-    private void startRefreshTimer() {
-        refreshTimer = new Timer(true);
-        refreshTimer.scheduleAtFixedRate(new TimerTask() {
-            @Override
-            public void run() {
-                Platform.runLater(() -> refreshDashboard());
-            }
-        }, 0, 60000); // Her dakika güncelle
-    }
-
-    public void stopRefreshTimer() {
-        if (refreshTimer != null) {
-            refreshTimer.cancel();
-            refreshTimer = null;
-        }
+    public void setMainApp(MainApp mainApp) {
+        // MainApp referansı şu an için kullanılmıyor
     }
 
     private void refreshDashboard() {
+        // Label'ları sıfırla
+        if (gunlukSatisLabel != null) gunlukSatisLabel.setText("0 TL");
+        if (aylikSatisLabel != null) aylikSatisLabel.setText("0 TL");
+        if (toplamBorcLabel != null) toplamBorcLabel.setText("0 TL");
+        
+        // ListView'ları temizle
+        if (kritikStokListView != null) kritikStokListView.getItems().clear();
+        if (borcluMusterilerListView != null) borcluMusterilerListView.getItems().clear();
+        
+        // Grafikleri temizle
+        if (satislarChart != null) satislarChart.getData().clear();
         ApiService.getInstance().getDashboard()
             .thenAccept(dashboard -> Platform.runLater(() -> {
                 try {

@@ -69,7 +69,7 @@ public class MusteriController implements Initializable {
         colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
         colBorc.setCellValueFactory(new PropertyValueFactory<>("borc"));
         
-        // İşlemler sütunu için düzenle ve sil butonları
+        // İşlemler sütunu için düzenle ve sil butonları bulunmakta
         colIslemler.setCellFactory(param -> new TableCell<>() {
             private final Button editButton = new Button("Düzenle");
             private final Button deleteButton = new Button("Sil");
@@ -98,7 +98,7 @@ public class MusteriController implements Initializable {
             }
         });
 
-        // Ödemeler tablosu
+        // Ödemeler tablosu bulunmaktadir
         colOdemeTarih.setCellValueFactory(cellData -> 
             javafx.beans.binding.Bindings.createStringBinding(
                 () -> cellData.getValue().getTarih().format(dateFormatter)
@@ -202,10 +202,10 @@ public class MusteriController implements Initializable {
         musteri.setTelefon(txtTelefon.getText().trim());
         musteri.setEmail(txtEmail.getText().trim());
         musteri.setAdres(txtAdres.getText().trim());
-        musteri.setBorc(0.0); // Yeni müşteri için borç sıfır olarak başlar
+        musteri.setBorc(0.0); // Yeni müşteri için borç sıfır olarak başlar ve gidişata göre birikir.
 
         if (selectedMusteri == null) {
-            // Yeni müşteri ekleme
+            // Yeni müşteri ekleme işlemi eklenr
             apiService.createMusteri(musteri)
                 .thenAccept(created -> {
                     musteriler.add(created);
@@ -217,9 +217,9 @@ public class MusteriController implements Initializable {
                     return null;
                 });
         } else {
-            // Mevcut müşteri güncelleme
+            // Mevcut müşteriyi güncelleme işlemi bulunur.
             musteri.setId(selectedMusteri.getId());
-            musteri.setBorc(selectedMusteri.getBorc()); // Mevcut borç durumunu koru
+            musteri.setBorc(selectedMusteri.getBorc()); // Mevcut borç durumunu korur
             apiService.updateMusteri(selectedMusteri.getId(), musteri)
                 .thenAccept(updated -> {
                     int index = musteriler.indexOf(selectedMusteri);
@@ -305,15 +305,15 @@ public class MusteriController implements Initializable {
 
         apiService.createOdeme(odeme)
             .thenAccept(created -> {
-                // Ödemeler listesini güncelle
-                odemeler.add(0, created); // En başa ekle
-                
-                // Müşteri borç bilgisini güncelle
+                // Ödemeler listesini günceller
+                odemeler.add(0, created); // En başa ekler
+
+                // Müşteri borç bilgisini günceller
                 selectedMusteri.setBorc(selectedMusteri.getBorc() - odemeTutari);
                 int index = musteriler.indexOf(selectedMusteri);
                 musteriler.set(index, selectedMusteri);
                 
-                // Formu temizle
+                // Formu temizler
                 txtOdemeTutar.clear();
                 txtOdemeAciklama.clear();
                 txtBorc.setText(String.valueOf(selectedMusteri.getBorc()));

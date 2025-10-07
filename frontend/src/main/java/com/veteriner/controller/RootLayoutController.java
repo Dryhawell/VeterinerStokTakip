@@ -6,7 +6,7 @@ import javafx.scene.control.Alert.AlertType;
 import com.veteriner.MainApp;
 
 /**
- * Ana pencere için controller sınıfı.
+ * Ana pencere için controller sınıfı bulunuyor.
  * Menü çubuğunu ve ana layout'u yönetir.
  */
 public class RootLayoutController {
@@ -18,7 +18,7 @@ public class RootLayoutController {
 
     @FXML
     private void initialize() {
-        // İnitialize işlemleri
+        // İnitialize işlemleri var
     }
 
     @FXML
@@ -94,7 +94,7 @@ public class RootLayoutController {
     }
 
     /**
-     * Hakkında dialogunu gösterir
+     * Hakkında diyalogunu gösterir
      */
     @FXML
     private void handleAbout() {

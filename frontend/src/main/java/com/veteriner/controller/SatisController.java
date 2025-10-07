@@ -127,7 +127,7 @@ public class SatisController implements Initializable {
     }
 
     private void setupListeners() {
-        // Miktar validasyonu
+        // Miktar oran şeysi
         txtMiktar.textProperty().addListener((obs, oldVal, newVal) -> {
             if (!newVal.matches("\\d*")) {
                 txtMiktar.setText(newVal.replaceAll("[^\\d]", ""));
@@ -180,7 +180,7 @@ public class SatisController implements Initializable {
 
         // Stok kontrolü
         if (miktar > urun.getStokMiktari()) {
-            updateStatus("Stok yetersiz! Mevcut stok: " + urun.getStokMiktari());
+            updateStatus("Stok yetersiz. Mevcut stok: " + urun.getStokMiktari());
             return;
         }
 
@@ -190,7 +190,7 @@ public class SatisController implements Initializable {
             if (item.getUrun().getId().equals(urun.getId())) {
                 int yeniMiktar = item.getMiktar() + miktar;
                 if (yeniMiktar > urun.getStokMiktari()) {
-                    updateStatus("Toplam miktar stok miktarını aşıyor!");
+                    updateStatus("Toplam miktar stok miktarını aşıyor");
                     return;
                 }
                 item.setMiktar(yeniMiktar);
@@ -216,23 +216,23 @@ public class SatisController implements Initializable {
 
     private boolean validateUrunForm() {
         if (cmbUrun.getValue() == null) {
-            updateStatus("Lütfen bir ürün seçin!");
+            updateStatus("Lütfen bir ürün seçiniz");
             return false;
         }
 
         if (txtMiktar.getText().isEmpty()) {
-            updateStatus("Lütfen miktar girin!");
+            updateStatus("Lütfen miktar giriniz");
             return false;
         }
 
         try {
             int miktar = Integer.parseInt(txtMiktar.getText());
             if (miktar <= 0) {
-                updateStatus("Miktar 0'dan büyük olmalıdır!");
+                updateStatus("Miktar sıfırdan büyük olmalıdır");
                 return false;
             }
         } catch (NumberFormatException e) {
-            updateStatus("Geçerli bir miktar girin!");
+            updateStatus("Geçerli bir miktar giriniz");
             return false;
         }
 

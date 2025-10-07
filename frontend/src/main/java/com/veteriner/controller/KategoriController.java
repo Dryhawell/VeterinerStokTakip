@@ -25,7 +25,7 @@ public class KategoriController {
     @FXML
     private TableColumn<Kategori, Void> islemlerColumn;
     
-    // No fields needed for kategoriAdiField since we create it in the dialog
+    // Kategori listesi burada bulunmktadir
     
     private ObservableList<Kategori> kategoriler = FXCollections.observableArrayList();
     private ApiService apiService;
@@ -41,7 +41,7 @@ public class KategoriController {
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         adColumn.setCellValueFactory(new PropertyValueFactory<>("ad"));
         
-        // İşlemler kolonu için butonlar
+        // İşlemler kolonu için butonlar var
         islemlerColumn.setCellFactory(_ -> new TableCell<>() {
             private final Button duzenleBtn = new Button("Düzenle");
             private final Button silBtn = new Button("Sil");

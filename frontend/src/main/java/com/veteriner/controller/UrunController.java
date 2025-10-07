@@ -78,7 +78,7 @@ public class UrunController {
         birimFiyatColumn.setCellValueFactory(new PropertyValueFactory<>("birimFiyat"));
         sonKullanmaTarihiColumn.setCellValueFactory(new PropertyValueFactory<>("sonKullanmaTarihi"));
         
-        // İşlemler kolonu için butonlar
+        // İşlemler için butonlar
         islemlerColumn.setCellFactory(_ -> new TableCell<>() {
             private final Button duzenleBtn = new Button("Düzenle");
             private final Button silBtn = new Button("Sil");
@@ -110,7 +110,7 @@ public class UrunController {
             }
         });
         
-        // Tarih formatı
+        // Tarih formatını ekliyoruz
         sonKullanmaTarihiColumn.setCellFactory(_ -> new TableCell<>() {
             private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
             
@@ -125,7 +125,7 @@ public class UrunController {
             }
         });
         
-        // Birim fiyat formatı
+        // Birim fiyat formatını ekliyoruz
         birimFiyatColumn.setCellFactory(_ -> new TableCell<>() {
             @Override
             protected void updateItem(Double item, boolean empty) {
