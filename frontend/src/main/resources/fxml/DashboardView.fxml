@@ -4,6 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.chart.*?>
 
 <AnchorPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.veteriner.controller.DashboardController">
     <VBox spacing="20" AnchorPane.leftAnchor="10" AnchorPane.rightAnchor="10" AnchorPane.topAnchor="10" AnchorPane.bottomAnchor="10">
@@ -12,6 +13,18 @@
 
         <!-- Üst Kartlar -->
         <HBox spacing="20">
+            <!-- Günlük Satış Kartı -->
+            <VBox styleClass="dashboard-card" spacing="10" minWidth="200" style="-fx-background-color: #4CAF50; -fx-padding: 15; -fx-background-radius: 5;">
+                <Label text="Günlük Satış" style="-fx-font-size: 16px; -fx-text-fill: white;" />
+                <Label fx:id="gunlukSatisLabel" text="0 TL" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: white;" />
+            </VBox>
+
+            <!-- Aylık Satış Kartı -->
+            <VBox styleClass="dashboard-card" spacing="10" minWidth="200" style="-fx-background-color: #4CAF50; -fx-padding: 15; -fx-background-radius: 5;">
+                <Label text="Aylık Satış" style="-fx-font-size: 16px; -fx-text-fill: white;" />
+                <Label fx:id="aylikSatisLabel" text="0 TL" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: white;" />
+            </VBox>
+
             <!-- Toplam Satış Kartı -->
             <VBox styleClass="dashboard-card" spacing="10" minWidth="200" style="-fx-background-color: #4CAF50; -fx-padding: 15; -fx-background-radius: 5;">
                 <Label text="Toplam Satış" style="-fx-font-size: 16px; -fx-text-fill: white;" />
@@ -45,17 +58,30 @@
                 </TableView>
             </VBox>
 
-            <!-- Düşük Stok Uyarıları -->
+            <!-- Kritik Stok Uyarıları -->
             <VBox spacing="10" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS" style="-fx-background-color: white; -fx-padding: 15; -fx-background-radius: 5; -fx-border-color: #ddd; -fx-border-radius: 5;">
-                <Label text="Düşük Stok Uyarıları" style="-fx-font-size: 16px; -fx-font-weight: bold" />
-                <TableView fx:id="dusukStokTable" VBox.vgrow="ALWAYS">
-                    <columns>
-                        <TableColumn fx:id="urunAdColumn" text="Ürün Adı" prefWidth="150" />
-                        <TableColumn fx:id="stokMiktariColumn" text="Stok Miktarı" prefWidth="100" />
-                        <TableColumn fx:id="kritikSeviyeColumn" text="Kritik Seviye" prefWidth="100" />
-                    </columns>
-                </TableView>
+                <Label text="Kritik Stok Uyarıları" style="-fx-font-size: 16px; -fx-font-weight: bold" />
+                <ListView fx:id="kritikStokListView" VBox.vgrow="ALWAYS" />
+            </VBox>
+
+            <!-- Borçlu Müşteriler -->
+            <VBox spacing="10" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS" style="-fx-background-color: white; -fx-padding: 15; -fx-background-radius: 5; -fx-border-color: #ddd; -fx-border-radius: 5;">
+                <Label text="Borçlu Müşteriler" style="-fx-font-size: 16px; -fx-font-weight: bold" />
+                <ListView fx:id="borcluMusterilerListView" VBox.vgrow="ALWAYS" />
             </VBox>
         </HBox>
+
+        <!-- Satışlar Grafiği -->
+        <VBox spacing="10" style="-fx-background-color: white; -fx-padding: 15; -fx-background-radius: 5; -fx-border-color: #ddd; -fx-border-radius: 5;">
+            <Label text="Son Satışlar" style="-fx-font-size: 16px; -fx-font-weight: bold" />
+            <BarChart fx:id="satislarChart" categoryGap="10" prefHeight="300">
+                <xAxis>
+                    <CategoryAxis side="BOTTOM" />
+                </xAxis>
+                <yAxis>
+                    <NumberAxis side="LEFT" />
+                </yAxis>
+            </BarChart>
+        </VBox>
     </VBox>
 </AnchorPane>

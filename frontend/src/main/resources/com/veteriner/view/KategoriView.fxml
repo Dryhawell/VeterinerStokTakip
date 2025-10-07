@@ -18,11 +18,11 @@
     <!-- Form Area -->
     <GridPane hgap="10" vgap="10">
         <Label text="Kategori Adı:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
-        <TextField fx:id="txtKategoriAdi" promptText="Kategori adını giriniz" 
+        <TextField fx:id="txtKategoriAdi" promptText="Kategori adını girin" 
                   GridPane.columnIndex="1" GridPane.rowIndex="0"/>
         
         <Label text="Açıklama:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
-        <TextArea fx:id="txtAciklama" promptText="Açıklama giriniz" wrapText="true"
+        <TextArea fx:id="txtAciklama" promptText="Açıklama girin" wrapText="true"
                   prefRowCount="2" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
 
         <HBox spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="2">
@@ -31,7 +31,7 @@
         </HBox>
     </GridPane>
 
-    <!-- Table Area -->
+    <!-- Table Area Bulunmaktadir -->
     <TableView fx:id="kategoriTable" VBox.vgrow="ALWAYS">
         <columns>
             <TableColumn fx:id="colId" text="ID" prefWidth="50"/>
