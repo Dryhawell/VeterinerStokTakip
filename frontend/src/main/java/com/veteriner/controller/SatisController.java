@@ -368,6 +368,38 @@ public class SatisController implements Initializable {
         }
     }
 
+    // --- FXML'de tanımlı handler'lar için köprü metodları ---
+    // SatisView.fxml: onAction="#handleSepeteEkle" -> ürün ekleme
+    @FXML
+    private void handleSepeteEkle() {
+        handleUrunEkle();
+    }
+
+    // SatisView.fxml: onAction="#handleUrunCikar" -> seçili ürünü sepetten çıkar
+    @FXML
+    private void handleUrunCikar() {
+        SepetItem selected = sepetTable.getSelectionModel().getSelectedItem();
+        if (selected != null) {
+            sepetItems.remove(selected);
+            updateToplam();
+        } else {
+            updateStatus("Lütfen sepetten bir ürün seçin!");
+        }
+    }
+
+    // SatisView.fxml: onAction="#handleSepetiTemizle" -> sepeti temizle
+    @FXML
+    private void handleSepetiTemizle() {
+        sepetItems.clear();
+        updateToplam();
+    }
+
+    // SatisView.fxml: onAction="#handleYeniMusteri" -> geçici bilgi (MainApp referansı yok)
+    @FXML
+    private void handleYeniMusteri() {
+        updateStatus("Yeni müşteri ekleme ekranı henüz bağlanmadı.");
+    }
+
     // Sepet öğesi için yardımcı sınıf
     public static class SepetItem {
         private Urun urun;
