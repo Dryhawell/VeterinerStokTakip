@@ -379,4 +379,50 @@ public class MusteriController implements Initializable {
             lblStatus.setText(message);
         }
     }
+
+    // --- FXML'de tanımlı handler'lar için köprü metodları ---
+    // MusteriView.fxml: onAction="#handleMusteriEkle" -> Kaydet ile eşle
+    @FXML
+    private void handleMusteriEkle() {
+        handleKaydet();
+    }
+
+    // MusteriView.fxml: onAction="#handleMusteriGuncelle" -> Seçili müşteri varsa kaydet (güncelle)
+    @FXML
+    private void handleMusteriGuncelle() {
+        if (selectedMusteri != null) {
+            handleKaydet();
+        } else {
+            updateStatus("Güncellemek için bir müşteri seçin!");
+        }
+    }
+
+    // MusteriView.fxml: onAction="#handleMusteriSil" -> Seçili müşteriyi sil
+    @FXML
+    private void handleMusteriSil() {
+        if (selectedMusteri == null) {
+            updateStatus("Silmek için bir müşteri seçin!");
+            return;
+        }
+        handleDelete(selectedMusteri);
+    }
+
+    // MusteriView.fxml: onAction="#handleOdemeEkle" -> Ödeme al ile eşle
+    @FXML
+    private void handleOdemeEkle() {
+        handleOdemeAl();
+    }
+
+    // MusteriView.fxml: onMouseClicked="#handleMusteriSec" -> tablo seçimine köprü (isteğe bağlı)
+    @FXML
+    private void handleMusteriSec() {
+        Musteri m = musteriTable.getSelectionModel().getSelectedItem();
+        if (m != null) {
+            selectedMusteri = m;
+            populateForm(m);
+            loadOdemeler(m.getId());
+            btnOdemeAl.setDisable(false);
+            lblSeciliMusteri.setText(m.getAd() + " " + m.getSoyad());
+        }
+    }
 }
