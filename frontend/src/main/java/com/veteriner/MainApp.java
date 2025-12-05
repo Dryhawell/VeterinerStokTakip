@@ -57,7 +57,8 @@ public class MainApp extends Application {
     public void showKategoriView() {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainApp.class.getResource("/fxml/KategoriView.fxml"));
+            // Resource adı KategoriView.fxml değil, Kategoriler.fxml
+            loader.setLocation(MainApp.class.getResource("/fxml/Kategoriler.fxml"));
             AnchorPane kategoriView = (AnchorPane) loader.load();
             rootLayout.setCenter(kategoriView);
         } catch (Exception e) {
