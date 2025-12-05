@@ -47,6 +47,7 @@ target/
 *.jar
 *.war
 *.ear
+frontend/target/
 *.zip
 *.tar.gz
 *.rar
