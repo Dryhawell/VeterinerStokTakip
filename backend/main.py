@@ -568,11 +568,11 @@ def get_dashboard(db: Session = Depends(get_db)):
         ],
         'enCokSatilanUrunler': [
             {
-                'id': urun.id,
-                'ad': urun.ad,
+                'id': urun_id,
+                'ad': urun_ad,
                 'toplamSatis': toplam_satis
             }
-            for urun, toplam_satis in en_cok_satilan_urunler
+            for urun_id, urun_ad, toplam_satis in en_cok_satilan_urunler
         ]
     }
 
